@@ -1,0 +1,151 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://cxf.apache.org/jaxrs
+        http://cxf.apache.org/schemas/jaxrs.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.1.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+<!-- 
+   
+    <context:annotation-config />
+    <context:component-scan base-package="com.mobitel.services.*" />     
+    <jaxrs:server id="employeeService" address="/employeeservices">
+        <jaxrs:providers>                    
+            <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
+        </jaxrs:providers>
+         _______add servicesImpl class____________________________________________________________________________________________________________________        
+        <jaxrs:serviceBeans>         
+            <ref bean="testservicesimpl"/>
+        </jaxrs:serviceBeans>        
+        <jaxrs:extensionMappings>
+            <entry key="xml" value="application/xml" />
+            <entry key="json" value="application/json" />
+        </jaxrs:extensionMappings>
+    </jaxrs:server>            
+     servicesImpl 
+    <bean id="testservicesimpl" class="com.mobitel.services.Impl.testservicesimpl" />        
+</beans>
+-->
+
+    <!--<import resource="classpath:META-INF/cxf/cxf.xml" />-->
+    <context:annotation-config />
+    <context:component-scan base-package="com.ongoingsolution.services.Impl.*" />
+    
+    <jaxrs:server id="employeeService" address="/employeeservices">
+        
+        <jaxrs:providers>                    
+            <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
+        </jaxrs:providers>
+        
+        <jaxrs:serviceBeans>         
+            <ref bean="testservicesimpl"/>
+<!--            <ref bean="testservicesimpl"/>
+            <ref bean="suplireservicesImpl"/>
+            <ref bean="vehicleservicesImpl"/>
+            <ref bean="servicesproviderImpl"/>
+            <ref bean="donservicesImpl"/>
+            <ref bean="imageuplode"/>
+            <ref bean="advertiesservicesimpl"/>
+            <ref bean="loginvicesimpl"/>-->
+        </jaxrs:serviceBeans>
+        
+        <jaxrs:extensionMappings>
+            <entry key="xml" value="application/xml" />
+            <entry key="json" value="application/json" />
+        </jaxrs:extensionMappings>
+        
+    </jaxrs:server>
+        
+    <!-- servicesImpl -->
+    <bean id="testservicesimpl" class="com.ongoingsolution.services.Impl.testservicesimpl"/>
+<!--    <bean id="coustermarservicesImpl" class="com.autosuport.servicesimpl.coustermarservicesImpl" />
+    <bean id="suplireservicesImpl" class="com.autosuport.servicesimpl.suplireservicesimpl" />
+    <bean id="vehicleservicesImpl" class="com.autosuport.servicesimpl.vehicleservicesimpl" />
+    <bean id="servicesproviderImpl" class="com.autosuport.servicesimpl.servicesproviderServicesImpl" />
+    <bean id="donservicesImpl" class="com.autosuport.servicesimpl.donserviceServicesimpl" />
+    <bean id="imageuplode" class="com.autosuport.servicesimpl.imageuplodeservicesimpl" />
+    <bean id="advertiesservicesimpl" class="com.autosuport.servicesimpl.advertiesservicesimpl" />
+    <bean id="loginvicesimpl" class="com.autosuport.servicesimpl.loginservicesimpl" />-->
+    <!--    <bean id="emailsend" class="com.autosuport.servicesimpl.sendEmailServicesimpl" />-->
+            
+    <!--daoimpl-->
+    <bean id="testdaoimpl" class="com.ongoingsolution.dao.Impl.testdaoimpl"/>
+<!--    <bean id="customerdaoImpl" class="com.autosuport.daoimpl.costermerDaoImpl" />
+    <bean id="supliredaoImpl" class="com.autosuport.daoimpl.supliredaoimpl" />
+    <bean id="vehicledaoImpl" class="com.autosuport.daoimpl.vehicledaoimpl" />
+    <bean id="servicessupliredaoImpl" class="com.autosuport.daoimpl.servicesproviderdaoimpl" />
+    <bean id="doneservicesdaoImpl" class="com.autosuport.daoimpl.donservicesDaoimpl" />
+    <bean id="advertiesdaoImpl" class="com.autosuport.daoimpl.advertiesmentdaoimpl" />
+    <bean id="logindaoImpl" class="com.autosuport.daoimpl.logindaoImpl" />-->
+    
+    
+    
+<!--    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.googlemail.com" />
+        <property name="port" value="587" />
+        <property name="username" value="autoservicelimited@gmail.com" />
+        <property name="password" value="auto@pvt@ltd" />
+ 
+          
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.debug">true</prop>
+            </props>
+        </property>
+    </bean>	-->
+    
+    <tx:annotation-driven transaction-manager="transactionManager" />
+ 
+    <!-- Transaction Manager -->
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+ 
+    <!-- Session Factory -->
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="annotatedClasses">
+            <list>
+                <value>com.ongoingsolution.model.Test</value>
+                <!--                <value>com.autosuport.modle.Customer</value>
+                <value>com.autosuport.modle.Doneservices</value>
+                <value>com.autosuport.modle.Donesuplire</value>
+                <value>com.autosuport.modle.Serviceshistry</value>
+                <value>com.autosuport.modle.Servicesprovider</value>
+                <value>com.autosuport.modle.Suplire</value>
+                <value>com.autosuport.modle.Vehicle</value>-->                
+                <!--                <value>com.autosuport.modle.Advetiesmet</value>
+                <value>com.autosuport.modle.Login</value>-->               
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>               
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+ 
+    <!-- dataSource configuration -->
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/autoservices" />
+        <property name="username" value="root" />
+        <property name="password" value="" />
+        <!--<property name="url" value="jdbc:mysql://autoservices.cf8xakbpsixd.ap-southeast-1.rds.amazonaws.com:3306/autoservices" />-->
+        <!--        <property name="hibernate.connection.zeroDateTimeBehavior">convertToNull</property>-->
+        <!--        <property name="username" value="root" />
+        <property name="password" value="" />-->        
+    </bean>       
+</beans>
