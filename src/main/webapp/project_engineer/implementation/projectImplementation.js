@@ -264,6 +264,12 @@ function Histrogram() {
                                 var allonairBlocked = data[0].createdprojectData.filter(findOnAirBlocked);
                                 var allonairPoc = data[0].createdprojectData.filter(findOnAirPOC);
 
+//                                develop a new function for change trget date
+                                function findTargetDate(fruit) {
+                                    return fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                }
+                                var targetAlldate = data[0].createdprojectData.filter(findTargetDate);
+
                                 var allonair = [];
                                 if (allonairOnly.length !== 0) {
                                     if (allonairRemoved.length !== 0) {
@@ -344,10 +350,15 @@ function Histrogram() {
 
 
 
-                                if (isNaN(allonair) !== false) {
+                                if ((isNaN(allonair) !== false) && (isNaN(targetAlldate) !== false)) {
                                     var onaliQ = jsonQ(allonair);
                                     var OnAir_Actual_Date = (onaliQ.find('OnAir_Actual_Date').value().sort());
-                                    var OnAir_Target_Date = (onaliQ.find('OnAir_Target_Date').value().sort());
+//                                    var OnAir_Target_Date = (onaliQ.find('OnAir_Target_Date').value().sort());
+
+//                                    new target date function
+                                    var dateQ = jsonQ(targetAlldate);
+                                    var OnAir_Target_Date = (dateQ.find('OnAir_Target_Date').value().sort());
+
                                     if ((isNaN(OnAir_Target_Date) !== false) && (isNaN(OnAir_Actual_Date) !== false)) {
                                         if (OnAir_Target_Date.length !== 0) {
                                             var SystemDate = new Date().toJSON().slice(0, 10);
@@ -471,14 +482,25 @@ function Histrogram() {
 
                                 //alert("Transmission_Implementation");//**********************************************************************************************
 
+//                                 develop a new function for change trget date
+                                function findTargetDate(fruit) {
+                                    return fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                }
+                                var targetAlldate = data[0].createdprojectData.filter(findTargetDate);
+
                                 function findOnAir(fruit) {
                                     return fruit.Status === 'OnAir';
                                 }
                                 var allonair = data[0].createdprojectData.filter(findOnAir);
-                                if (isNaN(allonair) !== false) {
+                                if ((isNaN(allonair) !== false) && (isNaN(targetAlldate) !== false)) {
                                     var onaliQ = jsonQ(allonair);
                                     var OnAir_Actual_Date = (onaliQ.find('OnAir_Actual_Date').value().sort());
-                                    var OnAir_Target_Date = (onaliQ.find('OnAir_Target_Date').value().sort());
+//                                    var OnAir_Target_Date = (onaliQ.find('OnAir_Target_Date').value().sort());
+
+//                                    new target date function
+                                    var dateQ = jsonQ(targetAlldate);
+                                    var OnAir_Target_Date = (dateQ.find('OnAir_Target_Date').value().sort());
+
                                     if ((isNaN(OnAir_Target_Date) !== false) && (isNaN(OnAir_Actual_Date) !== false)) {
                                         if (OnAir_Target_Date.length !== 0) {
                                             var SystemDate = new Date().toJSON().slice(0, 10);
@@ -3244,6 +3266,13 @@ function getSearchDateMonthly() {
                                 var allonairBlocked = data[0].createdprojectData.filter(findOnAirBlocked);
                                 var allonairPoc = data[0].createdprojectData.filter(findOnAirPOC);
 
+//                              develop a new function for change trget date
+                                function findTargetDate(fruit) {
+                                    return fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                }
+                                var targetAlldate = data[0].createdprojectData.filter(findTargetDate);
+
+
                                 var allonair = [];
                                 if (allonairOnly.length !== 0) {
                                     if (allonairRemoved.length !== 0) {
@@ -3325,10 +3354,15 @@ function getSearchDateMonthly() {
 
 
 
-                                if (isNaN(allonair) !== false) {
+                                if ((isNaN(allonair) !== false) && (isNaN(targetAlldate) !== false)) {
                                     var onaliQ = jsonQ(allonair);
                                     var OnAir_Actual_Date = (onaliQ.find('OnAir_Actual_Date').value().sort());
-                                    var OnAir_Target_Date = (onaliQ.find('OnAir_Target_Date').value().sort());
+//                                    var OnAir_Target_Date = (onaliQ.find('OnAir_Target_Date').value().sort());
+
+//                                    new target date function
+                                    var dateQ = jsonQ(targetAlldate);
+                                    var OnAir_Target_Date = (dateQ.find('OnAir_Target_Date').value().sort());
+
                                     if ((isNaN(OnAir_Target_Date) !== false) && (isNaN(OnAir_Actual_Date) !== false)) {
 
                                         if (OnAir_Target_Date.length !== 0) {
@@ -3372,10 +3406,10 @@ function getSearchDateMonthly() {
                                                 timeValuesBarHeightEnd.push(dateStart.format('YYYY-MM-31'));
                                                 dateStart.add(1, 'month');
                                             }
-                                            console.log(fullDateArray);
-                                            console.log(timeValues);
-                                            console.log(timeValuesBarHeightStart);
-                                            console.log(timeValuesBarHeightEnd);
+//                                            console.log(fullDateArray);
+//                                            console.log(timeValues);
+//                                            console.log(timeValuesBarHeightStart);
+//                                            console.log(timeValuesBarHeightEnd);
                                             for (i = 0; i < timeValues.length; i++) {
                                                 var startDate = timeValuesBarHeightStart[0];
                                                 var endDate = timeValuesBarHeightEnd[i];
@@ -3450,10 +3484,10 @@ function getSearchDateMonthly() {
                                                 timeValuesBarHeightEnd.push(dateStart.format('YYYY-MM-31'));
                                                 dateStart.add(1, 'month');
                                             }
-                                            console.log(fullDateArray);
-                                            console.log(timeValues);
-                                            console.log(timeValuesBarHeightStart);
-                                            console.log(timeValuesBarHeightEnd);
+//                                            console.log(fullDateArray);
+//                                            console.log(timeValues);
+//                                            console.log(timeValuesBarHeightStart);
+//                                            console.log(timeValuesBarHeightEnd);
 
                                             for (i = 0; i < timeValues.length; i++) {
                                                 var startDate = timeValuesBarHeightStart[0];
@@ -3532,16 +3566,16 @@ function getSearchDateMonthly() {
                                                 timeValuesBarHeightEnd.push(dateStart.format('YYYY-MM-31'));
                                                 dateStart.add(1, 'month');
                                             }
-                                            console.log(fullDateArray);
-                                            console.log(timeValues);
-                                            console.log(timeValuesBarHeightStart);
-                                            console.log(timeValuesBarHeightEnd);
+//                                            console.log(fullDateArray);
+//                                            console.log(timeValues);
+//                                            console.log(timeValuesBarHeightStart);
+//                                            console.log(timeValuesBarHeightEnd);
 
                                             var PreviousCountActual = filteredOnAir_Actual_Date.filter(function (item) {
-                                                return item.localeCompare(fullDateArray[0]) > -1 && Pstart.localeCompare(item) > -1;//change
+                                                return item.localeCompare(fullDateArray[0]) > -1 && timeValuesBarHeightStart[0].localeCompare(item) > -1;//change
                                             });
                                             var PreviousCountOnAir_Target = filteredOnAir_Target_Date.filter(function (item) {
-                                                return item.localeCompare(fullDateArray[0]) > -1 && Pstart.localeCompare(item) > -1;//change
+                                                return item.localeCompare(fullDateArray[0]) > -1 && timeValuesBarHeightStart[0].localeCompare(item) > -1;//change
                                             });
                                             for (i = 0; i < timeValues.length; i++) {
                                                 var startDate = timeValuesBarHeightStart[0];
@@ -3621,16 +3655,16 @@ function getSearchDateMonthly() {
                                                 timeValuesBarHeightEnd.push(dateStart.format('YYYY-MM-31'));
                                                 dateStart.add(1, 'month');
                                             }
-                                            console.log(fullDateArray);
-                                            console.log(timeValues);
-                                            console.log(timeValuesBarHeightStart);
-                                            console.log(timeValuesBarHeightEnd);
+//                                            console.log(fullDateArray);
+//                                            console.log(timeValues);
+//                                            console.log(timeValuesBarHeightStart);
+//                                            console.log(timeValuesBarHeightEnd);
 
                                             var PreviousCountActual = filteredOnAir_Actual_Date.filter(function (item) {
-                                                return item.localeCompare(fullDateArray[0]) > -1 && Pstart.localeCompare(item) > -1;//change
+                                                return item.localeCompare(fullDateArray[0]) > -1 && timeValuesBarHeightStart[0].localeCompare(item) > -1;//change
                                             });
                                             var PreviousCountOnAir_Target = filteredOnAir_Target_Date.filter(function (item) {
-                                                return item.localeCompare(fullDateArray[0]) > -1 && Pstart.localeCompare(item) > -1;//change
+                                                return item.localeCompare(fullDateArray[0]) > -1 && timeValuesBarHeightStart[0].localeCompare(item) > -1;//change
                                             });
                                             for (i = 0; i < timeValues.length; i++) {
                                                 var startDate = timeValuesBarHeightStart[0];
@@ -3727,14 +3761,25 @@ function getSearchDateMonthly() {
 
                                 //alert("Transmission_Implementation");//**********************************************************************************************
 
+//                                develop a new function for change trget date
+                                function findTargetDate(fruit) {
+                                    return fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                }
+                                var targetAlldate = data[0].createdprojectData.filter(findTargetDate);
+
                                 function findOnAir(fruit) {
                                     return fruit.Status === 'OnAir';
                                 }
                                 var allonair = data[0].createdprojectData.filter(findOnAir);
-                                if (isNaN(allonair) !== false) {
+                                if ((isNaN(allonair) !== false) && (isNaN(targetAlldate) !== false)) {
                                     var onaliQ = jsonQ(allonair);
                                     var OnAir_Actual_Date = (onaliQ.find('OnAir_Actual_Date').value().sort());
-                                    var OnAir_Target_Date = (onaliQ.find('OnAir_Target_Date').value().sort());
+//                                    var OnAir_Target_Date = (onaliQ.find('OnAir_Target_Date').value().sort());
+
+//                                    new target date function
+                                    var dateQ = jsonQ(targetAlldate);
+                                    var OnAir_Target_Date = (dateQ.find('OnAir_Target_Date').value().sort());
+
                                     if ((isNaN(OnAir_Target_Date) !== false) && (isNaN(OnAir_Actual_Date) !== false)) {
 
                                         if (OnAir_Target_Date.length !== 0) {
@@ -3778,10 +3823,10 @@ function getSearchDateMonthly() {
                                                 timeValuesBarHeightEnd.push(dateStart.format('YYYY-MM-31'));
                                                 dateStart.add(1, 'month');
                                             }
-                                            console.log(fullDateArray);
-                                            console.log(timeValues);
-                                            console.log(timeValuesBarHeightStart);
-                                            console.log(timeValuesBarHeightEnd);
+//                                            console.log(fullDateArray);
+//                                            console.log(timeValues);
+//                                            console.log(timeValuesBarHeightStart);
+//                                            console.log(timeValuesBarHeightEnd);
                                             for (i = 0; i < timeValues.length; i++) {
                                                 var startDate = timeValuesBarHeightStart[0];
                                                 var endDate = timeValuesBarHeightEnd[i];
@@ -3856,10 +3901,10 @@ function getSearchDateMonthly() {
                                                 timeValuesBarHeightEnd.push(dateStart.format('YYYY-MM-31'));
                                                 dateStart.add(1, 'month');
                                             }
-                                            console.log(fullDateArray);
-                                            console.log(timeValues);
-                                            console.log(timeValuesBarHeightStart);
-                                            console.log(timeValuesBarHeightEnd);
+//                                            console.log(fullDateArray);
+//                                            console.log(timeValues);
+//                                            console.log(timeValuesBarHeightStart);
+//                                            console.log(timeValuesBarHeightEnd);
 
                                             for (i = 0; i < timeValues.length; i++) {
                                                 var startDate = timeValuesBarHeightStart[0];
@@ -3938,16 +3983,16 @@ function getSearchDateMonthly() {
                                                 timeValuesBarHeightEnd.push(dateStart.format('YYYY-MM-31'));
                                                 dateStart.add(1, 'month');
                                             }
-                                            console.log(fullDateArray);
-                                            console.log(timeValues);
-                                            console.log(timeValuesBarHeightStart);
-                                            console.log(timeValuesBarHeightEnd);
+//                                            console.log(fullDateArray);
+//                                            console.log(timeValues);
+//                                            console.log(timeValuesBarHeightStart);
+//                                            console.log(timeValuesBarHeightEnd);
 
                                             var PreviousCountActual = filteredOnAir_Actual_Date.filter(function (item) {
-                                                return item.localeCompare(fullDateArray[0]) > -1 && Pstart.localeCompare(item) > -1;//change
+                                                return item.localeCompare(fullDateArray[0]) > -1 && timeValuesBarHeightStart[0].localeCompare(item) > -1;//change
                                             });
                                             var PreviousCountOnAir_Target = filteredOnAir_Target_Date.filter(function (item) {
-                                                return item.localeCompare(fullDateArray[0]) > -1 && Pstart.localeCompare(item) > -1;//change
+                                                return item.localeCompare(fullDateArray[0]) > -1 && timeValuesBarHeightStart[0].localeCompare(item) > -1;//change
                                             });
                                             for (i = 0; i < timeValues.length; i++) {
                                                 var startDate = timeValuesBarHeightStart[0];
@@ -4027,16 +4072,16 @@ function getSearchDateMonthly() {
                                                 timeValuesBarHeightEnd.push(dateStart.format('YYYY-MM-31'));
                                                 dateStart.add(1, 'month');
                                             }
-                                            console.log(fullDateArray);
-                                            console.log(timeValues);
-                                            console.log(timeValuesBarHeightStart);
-                                            console.log(timeValuesBarHeightEnd);
+//                                            console.log(fullDateArray);
+//                                            console.log(timeValues);
+//                                            console.log(timeValuesBarHeightStart);
+//                                            console.log(timeValuesBarHeightEnd);
 
                                             var PreviousCountActual = filteredOnAir_Actual_Date.filter(function (item) {
-                                                return item.localeCompare(fullDateArray[0]) > -1 && Pstart.localeCompare(item) > -1;//change
+                                                return item.localeCompare(fullDateArray[0]) > -1 && timeValuesBarHeightStart[0].localeCompare(item) > -1;//change
                                             });
                                             var PreviousCountOnAir_Target = filteredOnAir_Target_Date.filter(function (item) {
-                                                return item.localeCompare(fullDateArray[0]) > -1 && Pstart.localeCompare(item) > -1;//change
+                                                return item.localeCompare(fullDateArray[0]) > -1 && timeValuesBarHeightStart[0].localeCompare(item) > -1;//change
                                             });
                                             for (i = 0; i < timeValues.length; i++) {
                                                 var startDate = timeValuesBarHeightStart[0];
@@ -4106,8 +4151,6 @@ function getSearchDateMonthly() {
                                 } else {
                                     $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No OnAir Data .....</h2></div>");
                                 }
-
-
                             }
                             else {
                                 $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No Status Data .....</h2></div>");
@@ -5959,6 +6002,12 @@ function weekly() {
                                 var allonairBlocked = data[0].createdprojectData.filter(findOnAirBlocked);
                                 var allonairPoc = data[0].createdprojectData.filter(findOnAirPOC);
 
+//                                develop a new function for change trget date
+                                function findTargetDate(fruit) {
+                                    return fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                }
+                                var targetAlldate = data[0].createdprojectData.filter(findTargetDate);
+
                                 var allonair = [];
                                 if (allonairOnly.length !== 0) {
                                     if (allonairRemoved.length !== 0) {
@@ -6038,10 +6087,15 @@ function weekly() {
                                 }
 
 
-                                if (isNaN(allonair) !== false) {
+                                if ((isNaN(allonair) !== false) && (isNaN(targetAlldate) !== false)) {
                                     var onaliQ = jsonQ(allonair);
                                     var OnAir_Actual_Date = (onaliQ.find('OnAir_Actual_Date').value().sort());
-                                    var OnAir_Target_Date = (onaliQ.find('OnAir_Target_Date').value().sort());
+//                                    var OnAir_Target_Date = (onaliQ.find('OnAir_Target_Date').value().sort());
+
+//                                    new target date function
+                                    var dateQ = jsonQ(targetAlldate);
+                                    var OnAir_Target_Date = (dateQ.find('OnAir_Target_Date').value().sort());
+
                                     if ((isNaN(OnAir_Target_Date) !== false) && (isNaN(OnAir_Actual_Date) !== false)) {
 
                                         if (OnAir_Target_Date.length !== 0) {
@@ -6116,7 +6170,7 @@ function weekly() {
                                         for (i = 1; i < timeValues.length; i++) {
                                             var startDate = timeValues[0];
                                             var endDate = timeValues[i];
-                                            console.log(startDate + " ||||| " + endDate);
+//                                            console.log(startDate + " ||||| " + endDate);
                                             var filteredArrayActual = OnAir_Actual_Date.filter(function (item) {
                                                 return item.localeCompare(startDate) > -1 && endDate.localeCompare(item) > -1;
                                             });
@@ -6128,8 +6182,8 @@ function weekly() {
                                             OnAir_TargetValues.push(filteredArrayOnAir_Target.length);
 
                                         }
-                                        console.log(ActualValues);
-                                        console.log(OnAir_TargetValues);
+//                                        console.log(ActualValues);
+//                                        console.log(OnAir_TargetValues);
                                         $(function () {
                                             var chart = new Highcharts.Chart({
                                                 chart: {
@@ -6174,13 +6228,6 @@ function weekly() {
                                 } else {
                                     $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No OnAir Data .....</h2></div>");
                                 }
-
-
-
-
-
-
-
                             }
                             else {
                                 $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No Status Data .....</h2></div>");
@@ -6206,10 +6253,23 @@ function weekly() {
                                     return fruit.Status === 'OnAir';
                                 }
                                 var allonair = data[0].createdprojectData.filter(findOnAir);
-                                if (isNaN(allonair) !== false) {
+
+//                                develop a new function for change trget date
+                                function findTargetDate(fruit) {
+                                    return fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                }
+                                var targetAlldate = data[0].createdprojectData.filter(findTargetDate);
+
+
+                                if ((isNaN(allonair) !== false) && (isNaN(targetAlldate) !== false)) {
                                     var onaliQ = jsonQ(allonair);
                                     var OnAir_Actual_Date = (onaliQ.find('OnAir_Actual_Date').value().sort());
-                                    var OnAir_Target_Date = (onaliQ.find('OnAir_Target_Date').value().sort());
+//                                    var OnAir_Target_Date = (onaliQ.find('OnAir_Target_Date').value().sort());
+
+//                                    new target date function
+                                    var dateQ = jsonQ(targetAlldate);
+                                    var OnAir_Target_Date = (dateQ.find('OnAir_Target_Date').value().sort());
+
                                     if ((isNaN(OnAir_Target_Date) !== false) && (isNaN(OnAir_Actual_Date) !== false)) {
 
                                         if (OnAir_Target_Date.length !== 0) {
@@ -7384,6 +7444,12 @@ function getSearchDateWeekly() {
                                 var allonairBlocked = data[0].createdprojectData.filter(findOnAirBlocked);
                                 var allonairPoc = data[0].createdprojectData.filter(findOnAirPOC);
 
+//                            develop a new function for change trget date
+                                function findTargetDate(fruit) {
+                                    return fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                }
+                                var targetAlldate = data[0].createdprojectData.filter(findTargetDate);
+
                                 var allonair = [];
                                 if (allonairOnly.length !== 0) {
                                     if (allonairRemoved.length !== 0) {
@@ -7464,10 +7530,15 @@ function getSearchDateWeekly() {
 
 
 
-                                if (isNaN(allonair) !== false) {
+                                if ((isNaN(allonair) !== false) && (isNaN(targetAlldate) !== false)) {
                                     var onaliQ = jsonQ(allonair);
                                     var OnAir_Actual_Date = (onaliQ.find('OnAir_Actual_Date').value().sort());
-                                    var OnAir_Target_Date = (onaliQ.find('OnAir_Target_Date').value().sort());
+//                                    var OnAir_Target_Date = (onaliQ.find('OnAir_Target_Date').value().sort());
+
+//                                    new target date function
+                                    var dateQ = jsonQ(targetAlldate);
+                                    var OnAir_Target_Date = (dateQ.find('OnAir_Target_Date').value().sort());
+
                                     if ((isNaN(OnAir_Target_Date) !== false) && (isNaN(OnAir_Actual_Date) !== false)) {
 
                                         if (OnAir_Target_Date.length !== 0) {
@@ -7938,12 +8009,6 @@ function getSearchDateWeekly() {
                                 } else {
                                     $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No OnAir Data .....</h2></div>");
                                 }
-
-
-
-
-
-
                             }
                             else {
                                 $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No Status Data .....</h2></div>");
@@ -7969,10 +8034,22 @@ function getSearchDateWeekly() {
                                     return fruit.Status === 'OnAir';
                                 }
                                 var allonair = data[0].createdprojectData.filter(findOnAir);
-                                if (isNaN(allonair) !== false) {
+
+//                                develop a new function for change trget date
+                                function findTargetDate(fruit) {
+                                    return fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                }
+                                var targetAlldate = data[0].createdprojectData.filter(findTargetDate);
+
+                                if ((isNaN(allonair) !== false) && (isNaN(targetAlldate) !== false)) {
                                     var onaliQ = jsonQ(allonair);
                                     var OnAir_Actual_Date = (onaliQ.find('OnAir_Actual_Date').value().sort());
-                                    var OnAir_Target_Date = (onaliQ.find('OnAir_Target_Date').value().sort());
+//                                    var OnAir_Target_Date = (onaliQ.find('OnAir_Target_Date').value().sort());
+
+//                                    new target date function
+                                    var dateQ = jsonQ(targetAlldate);
+                                    var OnAir_Target_Date = (dateQ.find('OnAir_Target_Date').value().sort());
+
                                     if ((isNaN(OnAir_Target_Date) !== false) && (isNaN(OnAir_Actual_Date) !== false)) {
 
                                         if (OnAir_Target_Date.length !== 0) {
