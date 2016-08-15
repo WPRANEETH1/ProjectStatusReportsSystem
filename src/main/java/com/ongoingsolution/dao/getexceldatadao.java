@@ -15,9 +15,17 @@ import org.json.simple.JSONArray;
 public interface getexceldatadao {
 
     JSONArray getExcelDataByUser(String createdprojectName);
-    
+
     JSONArray getExcelAllProjectNameByUser(String userName);
-    
+
     public boolean updateExcelProjectData(Createdproject createdproject);
+
+    //manager    
+    JSONArray getExcelAllProjectNameManager();
     
+    JSONArray mainManagerLoadDashboard();
+    
+    //Engineer
+    JSONArray mainEngineerLoadDashboard(String userName);
+
 }

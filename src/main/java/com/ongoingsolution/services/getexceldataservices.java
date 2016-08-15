@@ -23,20 +23,37 @@ import javax.ws.rs.core.Response;
 @Path("/getexceldataservices")
 @WebService(name = "psrServices", targetNamespace = "")
 public interface getexceldataservices {
-    
+
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     @Path("getexceldata/{createdprojectName}")
     public Response getExcelDataByUser(@PathParam("createdprojectName") String createdprojectName);
-    
+
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     @Path("searchallprojectname/{userName}")
     public Response getExcelAllProjectNameByUser(@PathParam("userName") String userName);
-    
+
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})
     @Path("/updateexcelprojectdata")
     public Response updateExcelProjectData(Createdproject createdproject);
+
+//manager all project
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path("/searchallprojectnameManager")
+    public Response getExcelAllProjectNameManager();
+
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path("/mainManagerLoadDashboard")
+    public Response mainManagerLoadDashboard();
+    
+    //engineer
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path("/mainEngineerLoadDashboard/{userName}")
+    public Response mainEngineerLoadDashboard(@PathParam("userName") String userName);
 }

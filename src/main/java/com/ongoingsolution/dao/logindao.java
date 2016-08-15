@@ -16,6 +16,12 @@ import org.json.simple.JSONArray;
 public interface logindao {
 
     JSONArray getValidLoginUserdata(UserLogin userLogin);
-    
+
     public boolean createUser(CreatUserAccount creatUserAccount);
+
+    JSONArray getUserData(String userName);
+    
+    public boolean updateUserData(CreatUserAccount creatUserAccount);
+    
+    public boolean updateUserImage(CreatUserAccount creatUserAccount);
 }

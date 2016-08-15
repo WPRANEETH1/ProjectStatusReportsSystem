@@ -79,8 +79,38 @@ public class loginservicesimpl implements loginservices {
     @Override
     public Response createUser(CreatUserAccount creatUserAccount) {
         try {
-            Boolean val = logindao.createUser(creatUserAccount);            
+            Boolean val = logindao.createUser(creatUserAccount);
             if (val == true) {
+                return Response.ok(Response.Status.CREATED).build();
+            } else {
+                return Response.ok(Response.Status.NOT_ACCEPTABLE).build();
+            }
+        } catch (Exception e) {
+            return Response.ok(Response.Status.NOT_ACCEPTABLE).build();
+        }
+    }
+
+    @Transactional
+    @Override
+    public Response getUserData(String userName) {
+        try {
+            JSONArray getuserdata = logindao.getUserData(userName);
+            return Response.ok(getuserdata).build();
+        } catch (Exception e) {
+        }
+        return Response.ok(Response.Status.NOT_FOUND).build();
+    }
+
+    @Transactional
+    @Override
+    public Response updateUserData(CreatUserAccount creatUserAccount) {
+        try {
+            Boolean val = logindao.updateUserData(creatUserAccount);
+            if (val == true) {
+                Message message = PhaseInterceptorChain.getCurrentMessage();
+                HttpServletRequest request = (HttpServletRequest) message.get(AbstractHTTPDestination.HTTP_REQUEST);
+                HttpSession session = request.getSession();//true 
+                session.setAttribute("Name", creatUserAccount.getFirstName() + " " + creatUserAccount.getLastName());
                 return Response.ok(Response.Status.CREATED).build();
             } else {
                 return Response.ok(Response.Status.NOT_ACCEPTABLE).build();

@@ -60,4 +60,30 @@ public class createProjectdaoimpl implements createProjectdao {
         }
     }
 
+    @Override
+    public boolean updateProect(Createdproject createdproject) {
+        try {
+            Mongo mongo = new Mongo("localhost", 27017);
+            DB db = mongo.getDB("telecommobitel");
+            DBCollection collection = db.getCollection("createdproject");
+
+            BasicDBObject newDocumentOne = new BasicDBObject();
+            BasicDBObject newDocumentTwo = new BasicDBObject();
+            BasicDBObject newDocumentThree = new BasicDBObject();
+
+            newDocumentOne.append("$set", new BasicDBObject().append("createdprojectTotalscope", createdproject.getCreatedprojectTotalscope()));
+            newDocumentTwo.append("$set", new BasicDBObject().append("createdprojectStartDate", createdproject.getCreatedprojectStartDate()));
+            newDocumentThree.append("$set", new BasicDBObject().append("createdprojectEndDate", createdproject.getCreatedprojectEndDate()));
+            BasicDBObject searchQuery = new BasicDBObject().append("createdprojectName", createdproject.getCreatedprojectName());
+
+            collection.update(searchQuery, newDocumentOne);
+            collection.update(searchQuery, newDocumentTwo);
+            collection.update(searchQuery, newDocumentThree);
+            return true;
+        } catch (Exception e) {
+            System.out.println("Exception Error updateProect");
+            return false;
+        }
+    }
+
 }

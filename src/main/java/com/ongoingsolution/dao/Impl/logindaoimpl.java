@@ -31,11 +31,11 @@ public class logindaoimpl implements logindao {
 
     @Override
     public JSONArray getValidLoginUserdata(UserLogin userLogin) {
-        JSONArray jsonarray ;
+        JSONArray jsonarray;
         try {
             Mongo mongo = new Mongo("localhost", 27017);
             DB db = mongo.getDB("telecommobitel");
-            DBCollection collection = db.getCollection("userdata");            
+            DBCollection collection = db.getCollection("userdata");
 
             BasicDBObject whereQuery = new BasicDBObject();
 
@@ -70,6 +70,88 @@ public class logindaoimpl implements logindao {
             return true;
         } catch (Exception e) {
             System.out.println("Exception Error createUser");
+            return false;
+        }
+    }
+
+    @Override
+    public JSONArray getUserData(String userName) {
+        try {
+            Mongo mongo = new Mongo("localhost", 27017);
+            DB db = mongo.getDB("telecommobitel");
+            DBCollection collection = db.getCollection("userdata");
+
+            BasicDBObject whereQuery = new BasicDBObject();
+
+            whereQuery.put("userName", userName);
+
+            DBCursor cursor = collection.find(whereQuery);
+
+            String dataUser = JSON.serialize(cursor);
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(dataUser);
+            JSONArray jsonarray = (JSONArray) obj;
+
+            return jsonarray;
+
+        } catch (Exception e) {
+            System.out.println("Exception Error getUserData");
+            return null;
+        }
+    }
+
+    @Override
+    public boolean updateUserData(CreatUserAccount creatUserAccount) {
+        try {
+            Mongo mongo = new Mongo("localhost", 27017);
+            DB db = mongo.getDB("telecommobitel");
+            DBCollection collection = db.getCollection("userdata");
+
+            BasicDBObject newDocumentOne = new BasicDBObject();
+            BasicDBObject newDocumentTwo = new BasicDBObject();
+            BasicDBObject newDocumentThree = new BasicDBObject();
+            BasicDBObject newDocumentFour = new BasicDBObject();
+            BasicDBObject newDocumentFive = new BasicDBObject();
+            BasicDBObject newDocumentSix = new BasicDBObject();
+
+            newDocumentOne.append("$set", new BasicDBObject().append("firstName", creatUserAccount.getFirstName()));
+            newDocumentTwo.append("$set", new BasicDBObject().append("lastName", creatUserAccount.getLastName()));
+            newDocumentThree.append("$set", new BasicDBObject().append("birthDay", creatUserAccount.getBirthDay()));
+            newDocumentFour.append("$set", new BasicDBObject().append("department", creatUserAccount.getDepartment()));
+            newDocumentFive.append("$set", new BasicDBObject().append("tleNo", creatUserAccount.getTleNo()));
+            newDocumentSix.append("$set", new BasicDBObject().append("email", creatUserAccount.getEmail()));
+
+            BasicDBObject searchQuery = new BasicDBObject().append("userName", creatUserAccount.getUserName());
+
+            collection.update(searchQuery, newDocumentOne);
+            collection.update(searchQuery, newDocumentTwo);
+            collection.update(searchQuery, newDocumentThree);
+            collection.update(searchQuery, newDocumentFour);
+            collection.update(searchQuery, newDocumentFive);
+            collection.update(searchQuery, newDocumentSix);
+            return true;
+        } catch (Exception e) {
+            System.out.println("Exception Error updateUserData");
+            return false;
+        }
+    }
+
+    @Override
+    public boolean updateUserImage(CreatUserAccount creatUserAccount) {
+        try {
+            Mongo mongo = new Mongo("localhost", 27017);
+            DB db = mongo.getDB("telecommobitel");
+            DBCollection collection = db.getCollection("userdata");
+
+            BasicDBObject newDocumentOne = new BasicDBObject();            
+
+            newDocumentOne.append("$set", new BasicDBObject().append("image", creatUserAccount.getImage()));            
+            BasicDBObject searchQuery = new BasicDBObject().append("userName", creatUserAccount.getUserName());
+
+            collection.update(searchQuery, newDocumentOne);            
+            return true;
+        } catch (Exception e) {
+            System.out.println("Exception Error updateUserData");
             return false;
         }
     }

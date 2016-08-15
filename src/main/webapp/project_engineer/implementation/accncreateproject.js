@@ -28,7 +28,8 @@ function AccNproject() {
         });
     } else {
         $('#infotitle').text("Fill all main fields");
-        $('#infodetails').text("You should fill name, date, scope and category!...");
+        $('#infodetails').html("<p>You should fill fallowing fields before creating project..\n\
+                                <ui><li> name</li><li> date </li><li> scope </li><li> category</li></ui></p>");
         $('#information').modal('show');
     }
 }
@@ -60,7 +61,7 @@ function accn() {
     }
     if ($('#accnregion').is(":checked")) {
         NestedHeader[1].push("Region");
-        projectColumns.push({"data": "Region", "type": "text"});
+        projectColumns.push({"data": "Region", "type": "dropdown", "source": ["1", "2", "3", "4", "5", "6"]});
     }
     if ($('#accnsiteid').is(":checked")) {
         NestedHeader[1].push("Site ID");
@@ -68,7 +69,7 @@ function accn() {
     }
     if ($('#accnsitename').is(":checked")) {
         NestedHeader[1].push("Site Name");
-        projectColumns.push({"data": "Site Name", "type": "text"});
+        projectColumns.push({"data": "Site_Name", "type": "text"});
     }
     if ($('#accnTowerOwner').is(":checked")) {
         NestedHeader[1].push("Tower Owner");
@@ -97,7 +98,7 @@ function accn() {
     }
     if ($('#accn2g3g4g').is(":checked")) {
         NestedHeader[1].push("2G/3G/4G");
-        projectColumns.push({"data": "G2_3G_4G", "type": "text"});
+        projectColumns.push({"data": "G2_3G_4G", "type": "dropdown", "source": ["2G", "3G", "4G"]});
     }
     if ($('#accn2GDateFile').is(":checked")) {
         NestedHeader[1].push("2G Data File");
@@ -165,7 +166,7 @@ function accn() {
     }
     if ($('#accnstatus').is(":checked")) {
         NestedHeader[1].push("Status");
-        projectColumns.push({"data": "Status", "type": "text"});
+        projectColumns.push({"data": "Status", "type": "dropdown", "source": ["OnAir", "TE WIP", "Tower WIP", "MCW", "On Air Pendind", "RFI Pending", "RFI MW Pending(WIP)", "RFI Power Pending(WIP)", "RFI MW & Power Pending(WIP)", "Other Operator Approval Pending(WIP)","Material Pending(WIP)", "RF Cabinet(WIP)", "DT(WIP)", "Eq.not Ready", "Site not Ready", "SA Issues", "RFI MW Pending(CF)", "RFI Power Pending(CF)", "RFI MW & Power Pending(CF)", "Other Operator Approval Pending(CF)","Material Pending(CF)", "RF Cabinet(CF)", "DT(CF)", "Other"]});
     }
     if ($('#accnDependency').is(":checked")) {
         NestedHeader[1].push("Dependency");
@@ -265,7 +266,7 @@ function accn() {
     }
     if ($('#accnOnAirTargetDate').is(":checked")) {
         NestedHeader[1].push("OnAir Target Date");
-        projectColumns.push({"data": "OnAir_Target_Date", "type": "text"});
+        projectColumns.push({"data": "OnAir_Target_Date", "type": "date", "dateFormat": "YYYY-MM-DD"});
     }
     if ($('#accnComments').is(":checked")) {
         NestedHeader[1].push("Comments");
@@ -277,7 +278,7 @@ function accn() {
     }
     if ($('#accnOnAirActualDate').is(":checked")) {
         NestedHeader[1].push("OnAir Actual Date");
-        projectColumns.push({"data": "OnAir_Actual_Date", "type": "text"});
+        projectColumns.push({"data": "OnAir_Actual_Date", "type": "date", "dateFormat": "YYYY-MM-DD"});
     }
     if ($('#accnSAIssue').is(":checked")) {
         NestedHeader[1].push("SA Issue");

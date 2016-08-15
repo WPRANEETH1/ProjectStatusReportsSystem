@@ -28,7 +28,8 @@ function trimplcreateProjectt() {
         });
     } else {
         $('#infotitle').text("Fill all main fields");
-        $('#infodetails').text("You should fill name, date, scope and category!...");
+        $('#infodetails').html("<p>You should fill fallowing fields before creating project..\n\
+                                <ui><li> name</li><li> date </li><li> scope </li><li> category</li></ui></p>");
         $('#information').modal('show');
     }
 }

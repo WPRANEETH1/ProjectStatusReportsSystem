@@ -70,7 +70,7 @@ function registerUserObject() {
     var department = "Mobitel Eng Off";
     var image = "../../ProjectStatusReportsSystem/imageuplode/default-profile.png";
     var checkBy = "false";
-    var userRole = "engineer";
+    var userRole = "manager";
 
     var registerUser = null;
     if (firstName !== "" && lastName !== "" && userName !== "" && passWord !== "" && email !== "") {

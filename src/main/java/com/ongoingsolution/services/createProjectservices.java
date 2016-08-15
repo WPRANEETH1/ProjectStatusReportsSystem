@@ -33,4 +33,10 @@ public interface createProjectservices {
     @Produces({MediaType.APPLICATION_JSON})
     @Path("/deleteProject")
     public Response deleteProect(Createdproject createdproject);
+    
+    @POST
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path("/updateProject")
+    public Response updateProect(Createdproject createdproject);
 }

@@ -16,4 +16,6 @@ public interface createProjectdao {
     public boolean createProect(Createdproject createdproject);
     
     public boolean deleteProect(Createdproject createdproject);
+    
+     public boolean updateProect(Createdproject createdproject);
 }

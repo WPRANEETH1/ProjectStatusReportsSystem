@@ -11,6 +11,7 @@ import javax.jws.WebService;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -34,4 +35,15 @@ public interface loginservices {
     @Produces({MediaType.APPLICATION_JSON})
     @Path("/createUserEngineer")
     public Response createUser(CreatUserAccount creatUserAccount);
+
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path("getUserData/{userName}")
+    public Response getUserData(@PathParam("userName") String userName);
+
+    @POST
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path("/updateUserData")
+    public Response updateUserData(CreatUserAccount creatUserAccount);
 }

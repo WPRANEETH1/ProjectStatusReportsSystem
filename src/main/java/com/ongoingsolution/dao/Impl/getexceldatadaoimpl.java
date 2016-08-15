@@ -100,4 +100,100 @@ public class getexceldatadaoimpl implements getexceldatadao {
         }
     }
 
+    //manager
+    @Override
+    public JSONArray getExcelAllProjectNameManager() {
+        try {
+            Mongo mongo = new Mongo("localhost", 27017);
+            DB db = mongo.getDB("telecommobitel");
+            DBCollection collection = db.getCollection("createdproject");
+            BasicDBObject whereQuery = new BasicDBObject();
+            BasicDBObject field = new BasicDBObject();
+            BasicDBObject sortQuery = new BasicDBObject();
+
+//            whereQuery.put("createdprojectUserName", "praneeth");
+            field.put("createdprojectName", 1);
+            field.put("createdprojectDateTime", 1);
+            field.put("createdprojectCategory", 1);
+
+            sortQuery.put("createdprojectDateTime", -1);
+
+            DBCursor cursor = collection.find(whereQuery, field).sort(sortQuery);
+
+            String dataUser = JSON.serialize(cursor);
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(dataUser);
+            JSONArray jsonarray = (JSONArray) obj;
+
+            return jsonarray;
+
+        } catch (Exception e) {
+            System.out.println("Exception Error getExcelAllProjectNameManager");
+            return null;
+        }
+    }
+
+    @Override
+    public JSONArray mainManagerLoadDashboard() {
+        try {
+            Mongo mongo = new Mongo("localhost", 27017);
+            DB db = mongo.getDB("telecommobitel");
+            DBCollection collection = db.getCollection("createdproject");
+            BasicDBObject whereQuery = new BasicDBObject();
+            BasicDBObject field = new BasicDBObject();
+            BasicDBObject sortQuery = new BasicDBObject();
+
+//            whereQuery.put("createdprojectData", "createdprojectData.length>60");
+            field.put("createdprojectName", 1);
+            field.put("createdprojectData", 1);
+//            field.put("createdprojectCategory", 1);
+
+            sortQuery.put("createdprojectDateTime", -1);
+
+            DBCursor cursor = collection.find(whereQuery, field).sort(sortQuery);
+
+            String dataUser = JSON.serialize(cursor);
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(dataUser);
+            JSONArray jsonarray = (JSONArray) obj;
+
+            return jsonarray;
+
+        } catch (Exception e) {
+            System.out.println("Exception Error mainManagerLoadDashboard");
+            return null;
+        }
+    }
+
+    //engineer
+    @Override
+    public JSONArray mainEngineerLoadDashboard(String userName) {
+        try {
+            Mongo mongo = new Mongo("localhost", 27017);
+            DB db = mongo.getDB("telecommobitel");
+            DBCollection collection = db.getCollection("createdproject");
+            BasicDBObject whereQuery = new BasicDBObject();
+            BasicDBObject field = new BasicDBObject();
+            BasicDBObject sortQuery = new BasicDBObject();
+
+            whereQuery.put("createdprojectUserName", userName);
+            field.put("createdprojectName", 1);
+            field.put("createdprojectData", 1);
+//            field.put("createdprojectCategory", 1);
+
+            sortQuery.put("createdprojectDateTime", -1);
+
+            DBCursor cursor = collection.find(whereQuery, field).sort(sortQuery);
+
+            String dataUser = JSON.serialize(cursor);
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(dataUser);
+            JSONArray jsonarray = (JSONArray) obj;
+
+            return jsonarray;
+        } catch (Exception e) {
+            System.out.println("Exception Error mainEngineerLoadDashboard");
+            return null;
+        }
+    }
 }

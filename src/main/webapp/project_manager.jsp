@@ -171,6 +171,7 @@
         <%@include file="project_engineer/jsp/content.jsp" %>        
         <%@include file="project_engineer/jsp/modal/modaljsp/openproject.jsp" %>
         <%@include file="project_engineer/jsp/modal/modaljsp/profile.jsp" %>
+        <%@include file="project_engineer/jsp/modal/modaljsp/managerWorning.jsp" %>
         <%@include file="project_engineer/jsp/modal/modaljsp/issuesAdd.jsp" %>
         <%@include file="project_engineer/jsp/modal/modaljsp/issuesEdit.jsp" %>
         <%@include file="project_engineer/jsp/modal/modaljsp/createnewproject.jsp" %>        
@@ -267,7 +268,7 @@
 
     <script src="project_engineer/implementation/date.js"></script>
     <script src="project_engineer/implementation/jsonQ.js"></script>    
-    <script src="project_engineer/implementation/engineerfunction.js"></script> 
+    <script src="project_engineer/implementation/managerfunction.js"></script> 
     <script src="project_engineer/implementation/projectImplementation.js"></script>
 
     <style>
@@ -325,11 +326,11 @@
     <!--<script src="project_engineer/treeview/shieldui-all.min.js"></script>-->
     <script type='text/javascript' src='https://www.google.com/jsapi'></script>
     <!--<script src="project_engineer/treeview/jsapi.js"></script>-->
-    <script>        
-        google.load('visualization', '1', {packages: ['orgchart']});
-        google.setOnLoadCallback(drawChart);
+    <script>
+            google.load('visualization', '1', {packages: ['orgchart']});
+            google.setOnLoadCallback(drawChart);
     </script>
-    
+
     <style>
         .sui-treeview-item-text:hover{color:#fff;background-color:white}
         .google-visualization-orgchart-node {border: aliceblue}   
@@ -339,10 +340,10 @@
             height:100px;
         }
     </style>
-    
+
 
     <script src="project_engineer/jsp/modal/js/custombox.min.js"></script>
-    <script src="project_engineer/jsp/modal/js/legacy.min.js"></script>    
+    <script src="project_engineer/jsp/modal/js/legacy.min.js"></script> 
     <script>
             var uName = $('#sessionusername').val();
             if (isNaN(uName === false) || (uName === "null")) {

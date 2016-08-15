@@ -10,9 +10,8 @@
         <link rel="shortcut icon" href="login/css/images/mobitel.ico">
         <title>project_engineer template by Ongoing Solution</title>
 
-        <script src="project_engineer/assets/jquery/jquery.min.js"></script>
-
-
+        <script src="project_engineer/assets/jquery/jquery.min.js"></script>        
+        
         <!-- Include Required Prerequisites -->
         <script src="project_engineer/datepicker/moment.js"></script>
         <script type="text/javascript" src="project_engineer/datepicker/moment.min.js"></script>        
@@ -83,15 +82,36 @@
         <%@include file="project_engineer/jsp/header.jsp" %>
         <%@include file="project_engineer/jsp/excelsheet.jsp" %>        
         <%@include file="project_engineer/jsp/modal/modaljsp/openproject.jsp" %>
+        <%@include file="project_engineer/jsp/modal/modaljsp/profile.jsp" %>
+        <%@include file="project_engineer/jsp/modal/modaljsp/deleteProject.jsp" %>
+        <%@include file="project_engineer/jsp/modal/modaljsp/managerWorning.jsp" %>
+        <%@include file="project_engineer/jsp/modal/modaljsp/success.jsp" %>
         <%@include file="project_engineer/jsp/modal/modaljsp/createnewproject.jsp" %>
+        <%@include file="project_engineer/jsp/modal/modaljsp/projectProfile.jsp" %>
         <%@include file="project_engineer/jsp/modal/modaljsp/information.jsp" %>
-    </body>
-
+    </body>       
+    
     <script src="project_engineer/implementation/smcpcreateproject.js"></script>
     <script src="project_engineer/implementation/accncreateproject.js"></script>
     <script src="project_engineer/implementation/trimplcreateproject.js"></script>
 
 
     <script src="project_engineer/jsp/modal/js/custombox.min.js"></script>
-    <script src="project_engineer/jsp/modal/js/legacy.min.js"></script>    
+    <script src="project_engineer/jsp/modal/js/legacy.min.js"></script>  
+    <script>
+            var uName = $('#sessionusername').val();
+            if (isNaN(uName === false) || (uName === "null")) {
+                $.ajax({
+                    type: 'GET',
+                    url: "/ProjectStatusReportsSystem/rest/psrservices/logoutservices/logout",
+                    contentType: 'application/json',
+                    success: function (data, textStatus, jqXHR) {
+                        $('#sessionusername').val("");
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                    }
+                });
+                window.location.replace("index.jsp");
+            }
+    </script>
 </html>

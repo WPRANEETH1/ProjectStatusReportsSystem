@@ -3,6 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+/* global Handsontable, saveExcelFile */
+
 window.onload = loadexcelshetByprojectEngineer();
 
 function loadexcelshetByprojectEngineer() {
@@ -98,24 +100,32 @@ function viewexcelsheet(exceldata) {
                 };
 //                console.log((updateexcelData));
                 var rootURL = '/ProjectStatusReportsSystem/rest/psrservices/getexceldataservices/updateexcelprojectdata';
-                $.ajax({
-                    type: 'POST',
-                    url: rootURL,
-                    data: JSON.stringify(updateexcelData),
-                    contentType: 'application/json',
-                    success: function (data, textStatus, jqXHR) {
+                var userrole = $('#userRole').val();
+                if (userrole === "manager") {
+                    $('#managerworning').modal('show');
+                }
+                if (userrole === "engineer") {
+                    $.ajax({
+                        type: 'POST',
+                        url: rootURL,
+                        data: JSON.stringify(updateexcelData),
+                        contentType: 'application/json',
+                        success: function (data, textStatus, jqXHR) {
 //                        console.log(data);
-                        alert("suc");
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        alert("Error load loadexceldata");
-                    }
-                });
+//                            alert("suc");
+                            $('#success').modal('show');
+                            setTimeout(function() { $('#success').modal('hide'); }, 1000);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert("Error load loadexceldata");
+                        }
+                    });
+                }
             });
             Handsontable.Dom.addEvent(document.body, 'click', function (e) {
 
                 var element = e.target || e.srcElement;
-                if (element.nodeName == "BUTTON" && element.name == 'dump') {
+                if (element.nodeName === "BUTTON" && element.name === 'dump') {
                     var name = element.getAttribute('data-dump');
                     var instance = element.getAttribute('data-instance');
                     var hot = window[instance];

@@ -48,7 +48,7 @@ public class getexceldataservicesimpl implements getexceldataservices {
 
     @Transactional
     @Override
-    public Response updateExcelProjectData(Createdproject createdproject) {        
+    public Response updateExcelProjectData(Createdproject createdproject) {
         try {
             Boolean val = getexceldatadao.updateExcelProjectData(createdproject);
             if (val) {
@@ -58,6 +58,41 @@ public class getexceldataservicesimpl implements getexceldataservices {
         } catch (Exception e) {
         }
         return Response.ok(Response.Status.NOT_ACCEPTABLE).build();
+    }
+
+    //manager 
+    @Transactional
+    @Override
+    public Response getExcelAllProjectNameManager() {
+        try {
+            JSONArray allprojectName = getexceldatadao.getExcelAllProjectNameManager();
+            return Response.ok(allprojectName).build();
+        } catch (Exception e) {
+        }
+        return Response.ok(Response.Status.NOT_FOUND).build();
+    }
+
+    @Transactional
+    @Override
+    public Response mainManagerLoadDashboard() {
+        try {
+            JSONArray dashboardprojectname = getexceldatadao.mainManagerLoadDashboard();
+            return Response.ok(dashboardprojectname).build();
+        } catch (Exception e) {
+        }
+        return Response.ok(Response.Status.NOT_FOUND).build();
+    }
+
+    //Engineer
+    @Transactional
+    @Override
+    public Response mainEngineerLoadDashboard(String userName) {
+        try {
+            JSONArray dashboardprojectname = getexceldatadao.mainEngineerLoadDashboard(userName);
+            return Response.ok(dashboardprojectname).build();
+        } catch (Exception e) {
+        }
+        return Response.ok(Response.Status.NOT_FOUND).build();
     }
 
 }
