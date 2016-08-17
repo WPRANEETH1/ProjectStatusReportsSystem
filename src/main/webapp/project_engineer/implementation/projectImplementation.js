@@ -627,10 +627,22 @@ function Histrogram() {
                                     return fruit.Status === 'OnAir';
                                 }
                                 var allonair = data[0].createdprojectData.filter(findOnAir);
+
+//                                develop a new function for change trget date
+                                function findTargetDate(fruit) {
+                                    return fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                }
+                                var targetAlldate = data[0].createdprojectData.filter(findTargetDate);
+
                                 if (isNaN(allonair) !== false) {
                                     var onaliQ = jsonQ(allonair);
                                     var OnAir_Actual_Date = (onaliQ.find('OnAir_Actual_Date').value().sort());
-                                    var OnAir_Target_Date = (onaliQ.find('OnAir_Target_Date').value().sort());
+//                                    var OnAir_Target_Date = (onaliQ.find('OnAir_Target_Date').value().sort());
+
+//                                    new target date function
+                                    var dateQ = jsonQ(targetAlldate);
+                                    var OnAir_Target_Date = (dateQ.find('OnAir_Target_Date').value().sort());
+
                                     if ((isNaN(OnAir_Target_Date) !== false) && (isNaN(OnAir_Actual_Date) !== false)) {
                                         if (OnAir_Target_Date.length !== 0) {
                                             var SystemDate = new Date().toJSON().slice(0, 10);
@@ -687,12 +699,20 @@ function Histrogram() {
 
 //2GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
                                         function find2G(fruit) {
-                                            return fruit.G2_3G_4G === '2G';
+                                            return fruit.G2_3G_4G === '2G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
                                         }
                                         var all2G = data[0].createdprojectData.filter(find2G);
                                         var OnAir2G = jsonQ(all2G);
-                                        var OnAir_Actual_Date_2G = (OnAir2G.find('OnAir_Actual_Date').value().sort());
+
+                                        function findActualOnair_2G(fruit) {
+                                            return fruit.Status === 'OnAir' && fruit.G2_3G_4G === '2G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                        }
+                                        var all2GActual = data[0].createdprojectData.filter(findActualOnair_2G); //add new function to filter actual On Air date                                                                                                                       
+                                        var OnAir2GActual = jsonQ(all2GActual);
+
+                                        var OnAir_Actual_Date_2G = (OnAir2GActual.find('OnAir_Actual_Date').value().sort());//change
                                         var OnAir_Target_Date_2G = (OnAir2G.find('OnAir_Target_Date').value().sort());
+
                                         if ((isNaN(OnAir_Target_Date_2G) !== false) && (isNaN(OnAir_Actual_Date_2G) !== false)) {
                                             if (OnAir_Target_Date_2G.length !== 0) {
                                                 var SystemDate = new Date().toJSON().slice(0, 10);
@@ -726,12 +746,20 @@ function Histrogram() {
 
 //3GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
                                         function find3G(fruit) {
-                                            return fruit.G2_3G_4G === '3G';
+                                            return fruit.G2_3G_4G === '3G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
                                         }
                                         var all3G = data[0].createdprojectData.filter(find3G);
                                         var OnAir3G = jsonQ(all3G);
-                                        var OnAir_Actual_Date_3G = (OnAir3G.find('OnAir_Actual_Date').value().sort());
+
+                                        function findActualOnair_3G(fruit) {
+                                            return fruit.Status === 'OnAir' && fruit.G2_3G_4G === '3G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                        }
+                                        var all3GActual = data[0].createdprojectData.filter(findActualOnair_3G); //add new function to filter actual On Air date                                                                                
+                                        var OnAir3GActual = jsonQ(all3GActual);
+
+                                        var OnAir_Actual_Date_3G = (OnAir3GActual.find('OnAir_Actual_Date').value().sort());
                                         var OnAir_Target_Date_3G = (OnAir3G.find('OnAir_Target_Date').value().sort());
+
                                         if ((isNaN(OnAir_Target_Date_3G) !== false) && (isNaN(OnAir_Actual_Date_3G) !== false)) {
                                             if (OnAir_Target_Date_3G.length !== 0) {
                                                 var SystemDate = new Date().toJSON().slice(0, 10);
@@ -765,11 +793,18 @@ function Histrogram() {
 
 //4GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG                                        
                                         function find4G(fruit) {
-                                            return fruit.G2_3G_4G === '4G';
+                                            return fruit.G2_3G_4G === '4G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
                                         }
                                         var all4G = data[0].createdprojectData.filter(find4G);
                                         var OnAir4G = jsonQ(all4G);
-                                        var OnAir_Actual_Date_4G = (OnAir4G.find('OnAir_Actual_Date').value().sort());
+
+                                        function findActualOnair_4G(fruit) {
+                                            return fruit.Status === 'OnAir' && fruit.G2_3G_4G === '4G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                        }
+                                        var all4GActual = data[0].createdprojectData.filter(findActualOnair_4G); //add new function to filter actual On Air date                                                                                
+                                        var OnAir4GActual = jsonQ(all4GActual);
+
+                                        var OnAir_Actual_Date_4G = (OnAir4GActual.find('OnAir_Actual_Date').value().sort());
                                         var OnAir_Target_Date_4G = (OnAir4G.find('OnAir_Target_Date').value().sort());
                                         if ((isNaN(OnAir_Target_Date_4G) !== false) && (isNaN(OnAir_Actual_Date_4G) !== false)) {
                                             if (OnAir_Target_Date_4G.length !== 0) {
@@ -4175,10 +4210,22 @@ function getSearchDateMonthly() {
                                     return fruit.Status === 'OnAir';
                                 }
                                 var allonair = data[0].createdprojectData.filter(findOnAir);
+
+//                                develop a new function for change trget date
+                                function findTargetDate(fruit) {
+                                    return fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                }
+                                var targetAlldate = data[0].createdprojectData.filter(findTargetDate);
+
                                 if (isNaN(allonair) !== false) {
                                     var onaliQ = jsonQ(allonair);
                                     var OnAir_Actual_Date = (onaliQ.find('OnAir_Actual_Date').value().sort());
-                                    var OnAir_Target_Date = (onaliQ.find('OnAir_Target_Date').value().sort());
+//                                    var OnAir_Target_Date = (onaliQ.find('OnAir_Target_Date').value().sort());
+
+//                                    new target date function
+                                    var dateQ = jsonQ(targetAlldate);
+                                    var OnAir_Target_Date = (dateQ.find('OnAir_Target_Date').value().sort());
+
                                     if ((isNaN(OnAir_Target_Date) !== false) && (isNaN(OnAir_Actual_Date) !== false)) {
 
                                         if (OnAir_Target_Date.length !== 0) {
@@ -4244,11 +4291,18 @@ function getSearchDateMonthly() {
 
 //2GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
                                             function find2G(fruit) {
-                                                return fruit.G2_3G_4G === '2G';
+                                                return fruit.G2_3G_4G === '2G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
                                             }
                                             var all2G = data[0].createdprojectData.filter(find2G);
                                             var OnAir2G = jsonQ(all2G);
-                                            var OnAir_Actual_Date_2G = (OnAir2G.find('OnAir_Actual_Date').value().sort());
+
+                                            function findActualOnair_2G(fruit) {
+                                                return fruit.Status === 'OnAir' && fruit.G2_3G_4G === '2G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                            }
+                                            var all2GActual = data[0].createdprojectData.filter(findActualOnair_2G); //add new function to filter actual On Air date                                                                                                                       
+                                            var OnAir2GActual = jsonQ(all2GActual);
+
+                                            var OnAir_Actual_Date_2G = (OnAir2GActual.find('OnAir_Actual_Date').value().sort());
                                             var OnAir_Target_Date_2G = (OnAir2G.find('OnAir_Target_Date').value().sort());
                                             if ((isNaN(OnAir_Target_Date_2G) !== false) && (isNaN(OnAir_Actual_Date_2G) !== false)) {
                                                 if (OnAir_Target_Date_2G.length !== 0) {
@@ -4283,11 +4337,18 @@ function getSearchDateMonthly() {
 
 //3GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
                                             function find3G(fruit) {
-                                                return fruit.G2_3G_4G === '3G';
+                                                return fruit.G2_3G_4G === '3G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
                                             }
                                             var all3G = data[0].createdprojectData.filter(find3G);
                                             var OnAir3G = jsonQ(all3G);
-                                            var OnAir_Actual_Date_3G = (OnAir3G.find('OnAir_Actual_Date').value().sort());
+
+                                            function findActualOnair_3G(fruit) {
+                                                return fruit.Status === 'OnAir' && fruit.G2_3G_4G === '3G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                            }
+                                            var all3GActual = data[0].createdprojectData.filter(findActualOnair_3G); //add new function to filter actual On Air date                                                                                
+                                            var OnAir3GActual = jsonQ(all3GActual);
+
+                                            var OnAir_Actual_Date_3G = (OnAir3GActual.find('OnAir_Actual_Date').value().sort());
                                             var OnAir_Target_Date_3G = (OnAir3G.find('OnAir_Target_Date').value().sort());
                                             if ((isNaN(OnAir_Target_Date_3G) !== false) && (isNaN(OnAir_Actual_Date_3G) !== false)) {
                                                 if (OnAir_Target_Date_3G.length !== 0) {
@@ -4322,11 +4383,18 @@ function getSearchDateMonthly() {
 
 //4GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG                                        
                                             function find4G(fruit) {
-                                                return fruit.G2_3G_4G === '4G';
+                                                return fruit.G2_3G_4G === '4G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
                                             }
                                             var all4G = data[0].createdprojectData.filter(find4G);
                                             var OnAir4G = jsonQ(all4G);
-                                            var OnAir_Actual_Date_4G = (OnAir4G.find('OnAir_Actual_Date').value().sort());
+
+                                            function findActualOnair_4G(fruit) {
+                                                return fruit.Status === 'OnAir' && fruit.G2_3G_4G === '4G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                            }
+                                            var all4GActual = data[0].createdprojectData.filter(findActualOnair_4G); //add new function to filter actual On Air date                                                                                
+                                            var OnAir4GActual = jsonQ(all4GActual);
+
+                                            var OnAir_Actual_Date_4G = (OnAir4GActual.find('OnAir_Actual_Date').value().sort());
                                             var OnAir_Target_Date_4G = (OnAir4G.find('OnAir_Target_Date').value().sort());
                                             if ((isNaN(OnAir_Target_Date_4G) !== false) && (isNaN(OnAir_Actual_Date_4G) !== false)) {
                                                 if (OnAir_Target_Date_4G.length !== 0) {
@@ -4574,7 +4642,7 @@ function getSearchDateMonthly() {
                                             });
                                         }
                                         if ((Pstart < FO) && ((FO < Pend) && (Pend <= FEnd))) {//4444444444444444444444444
-
+                                            
                                             var timeValues = [];
                                             var ActualValues = [];
                                             var OnAir_TargetValues = [];
@@ -4617,11 +4685,18 @@ function getSearchDateMonthly() {
 
 //2GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
                                             function find2G(fruit) {
-                                                return fruit.G2_3G_4G === '2G';
+                                                return fruit.G2_3G_4G === '2G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
                                             }
                                             var all2G = data[0].createdprojectData.filter(find2G);
                                             var OnAir2G = jsonQ(all2G);
-                                            var OnAir_Actual_Date_2G = (OnAir2G.find('OnAir_Actual_Date').value().sort());
+
+                                            function findActualOnair_2G(fruit) {
+                                                return fruit.Status === 'OnAir' && fruit.G2_3G_4G === '2G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                            }
+                                            var all2GActual = data[0].createdprojectData.filter(findActualOnair_2G); //add new function to filter actual On Air date                                                                                                                       
+                                            var OnAir2GActual = jsonQ(all2GActual);
+
+                                            var OnAir_Actual_Date_2G = (OnAir2GActual.find('OnAir_Actual_Date').value().sort());
                                             var OnAir_Target_Date_2G = (OnAir2G.find('OnAir_Target_Date').value().sort());
                                             if ((isNaN(OnAir_Target_Date_2G) !== false) && (isNaN(OnAir_Actual_Date_2G) !== false)) {
                                                 if (OnAir_Target_Date_2G.length !== 0) {
@@ -4656,11 +4731,18 @@ function getSearchDateMonthly() {
 
 //3GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
                                             function find3G(fruit) {
-                                                return fruit.G2_3G_4G === '3G';
+                                                return fruit.G2_3G_4G === '3G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
                                             }
                                             var all3G = data[0].createdprojectData.filter(find3G);
                                             var OnAir3G = jsonQ(all3G);
-                                            var OnAir_Actual_Date_3G = (OnAir3G.find('OnAir_Actual_Date').value().sort());
+
+                                            function findActualOnair_3G(fruit) {
+                                                return fruit.Status === 'OnAir' && fruit.G2_3G_4G === '3G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                            }
+                                            var all3GActual = data[0].createdprojectData.filter(findActualOnair_3G); //add new function to filter actual On Air date                                                                                
+                                            var OnAir3GActual = jsonQ(all3GActual);
+
+                                            var OnAir_Actual_Date_3G = (OnAir3GActual.find('OnAir_Actual_Date').value().sort());
                                             var OnAir_Target_Date_3G = (OnAir3G.find('OnAir_Target_Date').value().sort());
                                             if ((isNaN(OnAir_Target_Date_3G) !== false) && (isNaN(OnAir_Actual_Date_3G) !== false)) {
                                                 if (OnAir_Target_Date_3G.length !== 0) {
@@ -4695,11 +4777,18 @@ function getSearchDateMonthly() {
 
 //4GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG                                        
                                             function find4G(fruit) {
-                                                return fruit.G2_3G_4G === '4G';
+                                                return fruit.G2_3G_4G === '4G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
                                             }
                                             var all4G = data[0].createdprojectData.filter(find4G);
                                             var OnAir4G = jsonQ(all4G);
-                                            var OnAir_Actual_Date_4G = (OnAir4G.find('OnAir_Actual_Date').value().sort());
+
+                                            function findActualOnair_4G(fruit) {
+                                                return fruit.Status === 'OnAir' && fruit.G2_3G_4G === '4G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                            }
+                                            var all4GActual = data[0].createdprojectData.filter(findActualOnair_4G); //add new function to filter actual On Air date                                                                                
+                                            var OnAir4GActual = jsonQ(all4GActual);
+
+                                            var OnAir_Actual_Date_4G = (OnAir4GActual.find('OnAir_Actual_Date').value().sort());
                                             var OnAir_Target_Date_4G = (OnAir4G.find('OnAir_Target_Date').value().sort());
                                             if ((isNaN(OnAir_Target_Date_4G) !== false) && (isNaN(OnAir_Actual_Date_4G) !== false)) {
                                                 if (OnAir_Target_Date_4G.length !== 0) {
@@ -4951,7 +5040,7 @@ function getSearchDateMonthly() {
                                             });
                                         }
                                         if ((Pstart >= FO) && (Pend <= FEnd)) {//55555555555555555555
-
+                                            alert("ss");
                                             var timeValues = [];
                                             var ActualValues = [];
                                             var OnAir_TargetValues = [];
@@ -4977,14 +5066,14 @@ function getSearchDateMonthly() {
                                             console.log(timeValuesBarHeightStart);
                                             console.log(timeValuesBarHeightEnd);
 
-                                            var PreviousCountActual = filteredOnAir_Actual_Date.filter(function (item) {
-                                                return item.localeCompare(fullDateArray[0]) > -1 && timeValuesBarHeightStart[0].localeCompare(item) > -1;//change
-                                            });
-                                            var PreviousCountOnAir_Target = filteredOnAir_Target_Date.filter(function (item) {
-                                                return item.localeCompare(fullDateArray[0]) > -1 && timeValuesBarHeightStart[0].localeCompare(item) > -1;//change
-                                            });
+//                                            var PreviousCountActual = filteredOnAir_Actual_Date.filter(function (item) {
+//                                                return item.localeCompare(fullDateArray[0]) > -1 && timeValuesBarHeightStart[0].localeCompare(item) > -1;//change
+//                                            });
+//                                            var PreviousCountOnAir_Target = filteredOnAir_Target_Date.filter(function (item) {
+//                                                return item.localeCompare(fullDateArray[0]) > -1 && timeValuesBarHeightStart[0].localeCompare(item) > -1;//change
+//                                            });
                                             for (i = 0; i < timeValues.length; i++) {
-                                                var startDate = timeValuesBarHeightStart[0];
+                                                var startDate = fullDateArray[0];//change
                                                 var endDate = timeValuesBarHeightEnd[i];
                                                 var CalculateArrayActual = filteredOnAir_Actual_Date.filter(function (item) {
                                                     return item.localeCompare(startDate) > -1 && endDate.localeCompare(item) > -1;
@@ -4993,17 +5082,27 @@ function getSearchDateMonthly() {
                                                     return item.localeCompare(startDate) > -1 && endDate.localeCompare(item) > -1;
                                                 });
 
-                                                ActualValues.push(CalculateArrayActual.length + PreviousCountActual.length);
-                                                OnAir_TargetValues.push(CalculateArrayOnAir_Target.length + PreviousCountOnAir_Target.length);
+                                                ActualValues.push(CalculateArrayActual.length);
+                                                OnAir_TargetValues.push(CalculateArrayOnAir_Target.length);
                                             }
-
+                                            console.log("2012-09-09".localeCompare("2012-09-09"));
+                                            console.log(PreviousCountActual);
+                                            console.log(CalculateArrayOnAir_Target);
+                                            console.log(CalculateArrayActual);
 //2GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
                                             function find2G(fruit) {
-                                                return fruit.G2_3G_4G === '2G';
+                                                return fruit.G2_3G_4G === '2G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
                                             }
                                             var all2G = data[0].createdprojectData.filter(find2G);
                                             var OnAir2G = jsonQ(all2G);
-                                            var OnAir_Actual_Date_2G = (OnAir2G.find('OnAir_Actual_Date').value().sort());
+
+                                            function findActualOnair_2G(fruit) {
+                                                return fruit.Status === 'OnAir' && fruit.G2_3G_4G === '2G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                            }
+                                            var all2GActual = data[0].createdprojectData.filter(findActualOnair_2G); //add new function to filter actual On Air date                                                                                                                       
+                                            var OnAir2GActual = jsonQ(all2GActual);
+
+                                            var OnAir_Actual_Date_2G = (OnAir2GActual.find('OnAir_Actual_Date').value().sort());
                                             var OnAir_Target_Date_2G = (OnAir2G.find('OnAir_Target_Date').value().sort());
                                             if ((isNaN(OnAir_Target_Date_2G) !== false) && (isNaN(OnAir_Actual_Date_2G) !== false)) {
                                                 if (OnAir_Target_Date_2G.length !== 0) {
@@ -5023,15 +5122,15 @@ function getSearchDateMonthly() {
                                                     }
                                                 }
 
-                                                var PreviousCountActual_2G = filteredOnAir_Actual_Date_2G.filter(function (item) {
-                                                    return item.localeCompare(fullDateArray[0]) > -1 && timeValuesBarHeightStart[0].localeCompare(item) > -1;//change
-                                                });
-                                                var PreviousCountOnAir_Target_2G = filteredOnAir_Target_Date_2G.filter(function (item) {
-                                                    return item.localeCompare(fullDateArray[0]) > -1 && timeValuesBarHeightStart[0].localeCompare(item) > -1;//change
-                                                });
+//                                                var PreviousCountActual_2G = filteredOnAir_Actual_Date_2G.filter(function (item) {
+//                                                    return item.localeCompare(fullDateArray[0]) > -1 && timeValuesBarHeightStart[0].localeCompare(item) > -1;//change
+//                                                });
+//                                                var PreviousCountOnAir_Target_2G = filteredOnAir_Target_Date_2G.filter(function (item) {
+//                                                    return item.localeCompare(fullDateArray[0]) > -1 && timeValuesBarHeightStart[0].localeCompare(item) > -1;//change
+//                                                });
 
                                                 for (i = 0; i < timeValues.length; i++) {
-                                                    var startDate = timeValuesBarHeightStart[0];
+                                                    var startDate = fullDateArray[0];
                                                     var endDate = timeValuesBarHeightEnd[i];
                                                     var CalculateArrayActual_2G = filteredOnAir_Actual_Date_2G.filter(function (item) {
                                                         return item.localeCompare(startDate) > -1 && endDate.localeCompare(item) > -1;
@@ -5039,18 +5138,25 @@ function getSearchDateMonthly() {
                                                     var CalculateArrayOnAir_Target_2G = filteredOnAir_Target_Date_2G.filter(function (item) {
                                                         return item.localeCompare(startDate) > -1 && endDate.localeCompare(item) > -1;
                                                     });
-                                                    ActualValues_2G.push(CalculateArrayActual_2G.length + PreviousCountActual_2G.length);
-                                                    OnAir_TargetValues_2G.push(CalculateArrayOnAir_Target_2G.length + PreviousCountOnAir_Target_2G.length);
+                                                    ActualValues_2G.push(CalculateArrayActual_2G.length);
+                                                    OnAir_TargetValues_2G.push(CalculateArrayOnAir_Target_2G.length);
                                                 }
                                             }
 
 //3GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
                                             function find3G(fruit) {
-                                                return fruit.G2_3G_4G === '3G';
+                                                return fruit.G2_3G_4G === '3G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
                                             }
                                             var all3G = data[0].createdprojectData.filter(find3G);
                                             var OnAir3G = jsonQ(all3G);
-                                            var OnAir_Actual_Date_3G = (OnAir3G.find('OnAir_Actual_Date').value().sort());
+
+                                            function findActualOnair_3G(fruit) {
+                                                return fruit.Status === 'OnAir' && fruit.G2_3G_4G === '3G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                            }
+                                            var all3GActual = data[0].createdprojectData.filter(findActualOnair_3G); //add new function to filter actual On Air date                                                                                
+                                            var OnAir3GActual = jsonQ(all3GActual);
+
+                                            var OnAir_Actual_Date_3G = (OnAir3GActual.find('OnAir_Actual_Date').value().sort());
                                             var OnAir_Target_Date_3G = (OnAir3G.find('OnAir_Target_Date').value().sort());
                                             if ((isNaN(OnAir_Target_Date_3G) !== false) && (isNaN(OnAir_Actual_Date_3G) !== false)) {
                                                 if (OnAir_Target_Date_3G.length !== 0) {
@@ -5070,15 +5176,15 @@ function getSearchDateMonthly() {
                                                     }
                                                 }
 
-                                                var PreviousCountActual_3G = filteredOnAir_Actual_Date_3G.filter(function (item) {
-                                                    return item.localeCompare(fullDateArray[0]) > -1 && timeValuesBarHeightStart[0].localeCompare(item) > -1;//change
-                                                });
-                                                var PreviousCountOnAir_Target_3G = filteredOnAir_Target_Date_3G.filter(function (item) {
-                                                    return item.localeCompare(fullDateArray[0]) > -1 && timeValuesBarHeightStart[0].localeCompare(item) > -1;//change
-                                                });
+//                                                var PreviousCountActual_3G = filteredOnAir_Actual_Date_3G.filter(function (item) {
+//                                                    return item.localeCompare(fullDateArray[0]) > -1 && timeValuesBarHeightStart[0].localeCompare(item) > -1;//change
+//                                                });
+//                                                var PreviousCountOnAir_Target_3G = filteredOnAir_Target_Date_3G.filter(function (item) {
+//                                                    return item.localeCompare(fullDateArray[0]) > -1 && timeValuesBarHeightStart[0].localeCompare(item) > -1;//change
+//                                                });
 
                                                 for (i = 0; i < timeValues.length; i++) {
-                                                    var startDate = timeValuesBarHeightStart[0];
+                                                    var startDate = fullDateArray[0];
                                                     var endDate = timeValuesBarHeightEnd[i];
                                                     var CalculateArrayActual_3G = filteredOnAir_Actual_Date_3G.filter(function (item) {
                                                         return item.localeCompare(startDate) > -1 && endDate.localeCompare(item) > -1;
@@ -5086,18 +5192,26 @@ function getSearchDateMonthly() {
                                                     var CalculateArrayOnAir_Target_3G = filteredOnAir_Target_Date_3G.filter(function (item) {
                                                         return item.localeCompare(startDate) > -1 && endDate.localeCompare(item) > -1;
                                                     });
-                                                    ActualValues_3G.push(CalculateArrayActual_3G.length + PreviousCountActual_3G.length);
-                                                    OnAir_TargetValues_3G.push(CalculateArrayOnAir_Target_3G.length + PreviousCountOnAir_Target_3G.length);
+                                                    ActualValues_3G.push(CalculateArrayActual_3G.length);
+                                                    OnAir_TargetValues_3G.push(CalculateArrayOnAir_Target_3G.length);
                                                 }
                                             }
 
 //4GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG                                        
                                             function find4G(fruit) {
-                                                return fruit.G2_3G_4G === '4G';
+                                                return fruit.G2_3G_4G === '4G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
                                             }
                                             var all4G = data[0].createdprojectData.filter(find4G);
                                             var OnAir4G = jsonQ(all4G);
-                                            var OnAir_Actual_Date_4G = (OnAir4G.find('OnAir_Actual_Date').value().sort());
+
+                                            function findActualOnair_4G(fruit) {
+                                                return fruit.Status === 'OnAir' && fruit.G2_3G_4G === '4G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                            }
+                                            var all4GActual = data[0].createdprojectData.filter(findActualOnair_4G); //add new function to filter actual On Air date                                                                                
+                                            var OnAir4GActual = jsonQ(all4GActual);
+
+
+                                            var OnAir_Actual_Date_4G = (OnAir4GActual.find('OnAir_Actual_Date').value().sort());
                                             var OnAir_Target_Date_4G = (OnAir4G.find('OnAir_Target_Date').value().sort());
                                             if ((isNaN(OnAir_Target_Date_4G) !== false) && (isNaN(OnAir_Actual_Date_4G) !== false)) {
                                                 if (OnAir_Target_Date_4G.length !== 0) {
@@ -5117,15 +5231,15 @@ function getSearchDateMonthly() {
                                                     }
                                                 }
 
-                                                var PreviousCountActual_4G = filteredOnAir_Actual_Date_4G.filter(function (item) {
-                                                    return item.localeCompare(fullDateArray[0]) > -1 && timeValuesBarHeightStart[0].localeCompare(item) > -1;//change
-                                                });
-                                                var PreviousCountOnAir_Target_4G = filteredOnAir_Target_Date_4G.filter(function (item) {
-                                                    return item.localeCompare(fullDateArray[0]) > -1 && timeValuesBarHeightStart[0].localeCompare(item) > -1;//change
-                                                });
+//                                                var PreviousCountActual_4G = filteredOnAir_Actual_Date_4G.filter(function (item) {
+//                                                    return item.localeCompare(fullDateArray[0]) > -1 && timeValuesBarHeightStart[0].localeCompare(item) > -1;//change
+//                                                });
+//                                                var PreviousCountOnAir_Target_4G = filteredOnAir_Target_Date_4G.filter(function (item) {
+//                                                    return item.localeCompare(fullDateArray[0]) > -1 && timeValuesBarHeightStart[0].localeCompare(item) > -1;//change
+//                                                });
 
                                                 for (i = 0; i < timeValues.length; i++) {
-                                                    var startDate = timeValuesBarHeightStart[0];
+                                                    var startDate = fullDateArray[0];
                                                     var endDate = timeValuesBarHeightEnd[i];
                                                     var CalculateArrayActual_4G = filteredOnAir_Actual_Date_4G.filter(function (item) {
                                                         return item.localeCompare(startDate) > -1 && endDate.localeCompare(item) > -1;
@@ -5133,8 +5247,8 @@ function getSearchDateMonthly() {
                                                     var CalculateArrayOnAir_Target_4G = filteredOnAir_Target_Date_4G.filter(function (item) {
                                                         return item.localeCompare(startDate) > -1 && endDate.localeCompare(item) > -1;
                                                     });
-                                                    ActualValues_4G.push(CalculateArrayActual_4G.length + PreviousCountActual_4G.length);
-                                                    OnAir_TargetValues_4G.push(CalculateArrayOnAir_Target_4G.length + PreviousCountOnAir_Target_4G.length);
+                                                    ActualValues_4G.push(CalculateArrayActual_4G.length);
+                                                    OnAir_TargetValues_4G.push(CalculateArrayOnAir_Target_4G.length);
                                                 }
                                             }
 
@@ -5406,11 +5520,18 @@ function getSearchDateMonthly() {
 
 //2GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
                                             function find2G(fruit) {
-                                                return fruit.G2_3G_4G === '2G';
+                                                return fruit.G2_3G_4G === '2G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
                                             }
                                             var all2G = data[0].createdprojectData.filter(find2G);
                                             var OnAir2G = jsonQ(all2G);
-                                            var OnAir_Actual_Date_2G = (OnAir2G.find('OnAir_Actual_Date').value().sort());
+
+                                            function findActualOnair_2G(fruit) {
+                                                return fruit.Status === 'OnAir' && fruit.G2_3G_4G === '2G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                            }
+                                            var all2GActual = data[0].createdprojectData.filter(findActualOnair_2G); //add new function to filter actual On Air date                                                                                                                       
+                                            var OnAir2GActual = jsonQ(all2GActual);
+
+                                            var OnAir_Actual_Date_2G = (OnAir2GActual.find('OnAir_Actual_Date').value().sort());
                                             var OnAir_Target_Date_2G = (OnAir2G.find('OnAir_Target_Date').value().sort());
                                             if ((isNaN(OnAir_Target_Date_2G) !== false) && (isNaN(OnAir_Actual_Date_2G) !== false)) {
                                                 if (OnAir_Target_Date_2G.length !== 0) {
@@ -5453,11 +5574,18 @@ function getSearchDateMonthly() {
 
 //3GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
                                             function find3G(fruit) {
-                                                return fruit.G2_3G_4G === '3G';
+                                                return fruit.G2_3G_4G === '3G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
                                             }
                                             var all3G = data[0].createdprojectData.filter(find3G);
                                             var OnAir3G = jsonQ(all3G);
-                                            var OnAir_Actual_Date_3G = (OnAir3G.find('OnAir_Actual_Date').value().sort());
+
+                                            function findActualOnair_3G(fruit) {
+                                                return fruit.Status === 'OnAir' && fruit.G2_3G_4G === '3G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                            }
+                                            var all3GActual = data[0].createdprojectData.filter(findActualOnair_3G); //add new function to filter actual On Air date                                                                                
+                                            var OnAir3GActual = jsonQ(all3GActual);
+
+                                            var OnAir_Actual_Date_3G = (OnAir3GActual.find('OnAir_Actual_Date').value().sort());
                                             var OnAir_Target_Date_3G = (OnAir3G.find('OnAir_Target_Date').value().sort());
                                             if ((isNaN(OnAir_Target_Date_3G) !== false) && (isNaN(OnAir_Actual_Date_3G) !== false)) {
                                                 if (OnAir_Target_Date_3G.length !== 0) {
@@ -5500,11 +5628,18 @@ function getSearchDateMonthly() {
 
 //4GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG                                        
                                             function find4G(fruit) {
-                                                return fruit.G2_3G_4G === '4G';
+                                                return fruit.G2_3G_4G === '4G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
                                             }
                                             var all4G = data[0].createdprojectData.filter(find4G);
                                             var OnAir4G = jsonQ(all4G);
-                                            var OnAir_Actual_Date_4G = (OnAir4G.find('OnAir_Actual_Date').value().sort());
+
+                                            function findActualOnair_4G(fruit) {
+                                                return fruit.Status === 'OnAir' && fruit.G2_3G_4G === '4G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                            }
+                                            var all4GActual = data[0].createdprojectData.filter(findActualOnair_4G); //add new function to filter actual On Air date                                                                                
+                                            var OnAir4GActual = jsonQ(all4GActual);
+
+                                            var OnAir_Actual_Date_4G = (OnAir4GActual.find('OnAir_Actual_Date').value().sort());
                                             var OnAir_Target_Date_4G = (OnAir4G.find('OnAir_Target_Date').value().sort());
                                             if ((isNaN(OnAir_Target_Date_4G) !== false) && (isNaN(OnAir_Actual_Date_4G) !== false)) {
                                                 if (OnAir_Target_Date_4G.length !== 0) {
@@ -6423,13 +6558,25 @@ function weekly() {
                                 // alert("Access Network");//**********************************************************************************************
 
                                 function findOnAir(fruit) {
-                                    return fruit.Status === 'OnAir';
+                                    return fruit.Status === 'OnAir' && fruit.Site_ID !== null && fruit.Site_ID !== "";
                                 }
                                 var allonair = data[0].createdprojectData.filter(findOnAir);
+
+//                                develop a new function for change trget date
+                                function findTargetDate(fruit) {
+                                    return fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                }
+                                var targetAlldate = data[0].createdprojectData.filter(findTargetDate);
+
                                 if (isNaN(allonair) !== false) {
                                     var onaliQ = jsonQ(allonair);
                                     var OnAir_Actual_Date = (onaliQ.find('OnAir_Actual_Date').value().sort());
-                                    var OnAir_Target_Date = (onaliQ.find('OnAir_Target_Date').value().sort());
+//                                    var OnAir_Target_Date = (onaliQ.find('OnAir_Target_Date').value().sort());
+
+//                                    new target date function
+                                    var dateQ = jsonQ(targetAlldate);
+                                    var OnAir_Target_Date = (dateQ.find('OnAir_Target_Date').value().sort());
+
                                     if ((isNaN(OnAir_Target_Date) !== false) && (isNaN(OnAir_Actual_Date) !== false)) {
 
                                         if (OnAir_Target_Date.length !== 0) {
@@ -6516,11 +6663,18 @@ function weekly() {
 
 //2GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
                                         function find2G(fruit) {
-                                            return fruit.G2_3G_4G === '2G';
+                                            return fruit.G2_3G_4G === '2G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
                                         }
                                         var all2G = data[0].createdprojectData.filter(find2G);
                                         var OnAir2G = jsonQ(all2G);
-                                        var OnAir_Actual_Date_2G = (OnAir2G.find('OnAir_Actual_Date').value().sort());
+
+                                        function findActualOnair_2G(fruit) {
+                                            return fruit.Status === 'OnAir' && fruit.G2_3G_4G === '2G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                        }
+                                        var all2GActual = data[0].createdprojectData.filter(findActualOnair_2G); //add new function to filter actual On Air date                                                                                                                       
+                                        var OnAir2GActual = jsonQ(all2GActual);
+
+                                        var OnAir_Actual_Date_2G = (OnAir2GActual.find('OnAir_Actual_Date').value().sort());
                                         var OnAir_Target_Date_2G = (OnAir2G.find('OnAir_Target_Date').value().sort());
                                         if ((isNaN(OnAir_Target_Date_2G) !== false) && (isNaN(OnAir_Actual_Date_2G) !== false)) {
                                             if (OnAir_Target_Date_2G.length !== 0) {
@@ -6560,11 +6714,18 @@ function weekly() {
 
 //3GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
                                         function find3G(fruit) {
-                                            return fruit.G2_3G_4G === '3G';
+                                            return fruit.G2_3G_4G === '3G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
                                         }
                                         var all3G = data[0].createdprojectData.filter(find3G);
                                         var OnAir3G = jsonQ(all3G);
-                                        var OnAir_Actual_Date_3G = (OnAir3G.find('OnAir_Actual_Date').value().sort());
+
+                                        function findActualOnair_3G(fruit) {
+                                            return fruit.Status === 'OnAir' && fruit.G2_3G_4G === '3G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                        }
+                                        var all3GActual = data[0].createdprojectData.filter(findActualOnair_3G); //add new function to filter actual On Air date                                                                                
+                                        var OnAir3GActual = jsonQ(all3GActual);
+
+                                        var OnAir_Actual_Date_3G = (OnAir3GActual.find('OnAir_Actual_Date').value().sort());
                                         var OnAir_Target_Date_3G = (OnAir3G.find('OnAir_Target_Date').value().sort());
                                         if ((isNaN(OnAir_Target_Date_3G) !== false) && (isNaN(OnAir_Actual_Date_3G) !== false)) {
                                             if (OnAir_Target_Date_3G.length !== 0) {
@@ -6605,11 +6766,18 @@ function weekly() {
 
 //4GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG                                        
                                         function find4G(fruit) {
-                                            return fruit.G2_3G_4G === '4G';
+                                            return fruit.G2_3G_4G === '4G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
                                         }
                                         var all4G = data[0].createdprojectData.filter(find4G);
                                         var OnAir4G = jsonQ(all4G);
-                                        var OnAir_Actual_Date_4G = (OnAir4G.find('OnAir_Actual_Date').value().sort());
+
+                                        function findActualOnair_4G(fruit) {
+                                            return fruit.Status === 'OnAir' && fruit.G2_3G_4G === '4G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                        }
+                                        var all4GActual = data[0].createdprojectData.filter(findActualOnair_4G); //add new function to filter actual On Air date                                                                                
+                                        var OnAir4GActual = jsonQ(all4GActual);
+
+                                        var OnAir_Actual_Date_4G = (OnAir4GActual.find('OnAir_Actual_Date').value().sort());
                                         var OnAir_Target_Date_4G = (OnAir4G.find('OnAir_Target_Date').value().sort());
                                         if ((isNaN(OnAir_Target_Date_4G) !== false) && (isNaN(OnAir_Actual_Date_4G) !== false)) {
                                             if (OnAir_Target_Date_4G.length !== 0) {
@@ -8548,10 +8716,22 @@ function getSearchDateWeekly() {
                                     return fruit.Status === 'OnAir';
                                 }
                                 var allonair = data[0].createdprojectData.filter(findOnAir);
+
+//                                develop a new function for change trget date
+                                function findTargetDate(fruit) {
+                                    return fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                }
+                                var targetAlldate = data[0].createdprojectData.filter(findTargetDate);
+
                                 if (isNaN(allonair) !== false) {
                                     var onaliQ = jsonQ(allonair);
                                     var OnAir_Actual_Date = (onaliQ.find('OnAir_Actual_Date').value().sort());
-                                    var OnAir_Target_Date = (onaliQ.find('OnAir_Target_Date').value().sort());
+//                                    var OnAir_Target_Date = (onaliQ.find('OnAir_Target_Date').value().sort());
+
+//                                    new target date function
+                                    var dateQ = jsonQ(targetAlldate);
+                                    var OnAir_Target_Date = (dateQ.find('OnAir_Target_Date').value().sort());
+
                                     if ((isNaN(OnAir_Target_Date) !== false) && (isNaN(OnAir_Actual_Date) !== false)) {
 
                                         if (OnAir_Target_Date.length !== 0) {
@@ -8650,11 +8830,18 @@ function getSearchDateWeekly() {
 
 //2GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
                                             function find2G(fruit) {
-                                                return fruit.G2_3G_4G === '2G';
+                                                return fruit.G2_3G_4G === '2G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
                                             }
                                             var all2G = data[0].createdprojectData.filter(find2G);
                                             var OnAir2G = jsonQ(all2G);
-                                            var OnAir_Actual_Date_2G = (OnAir2G.find('OnAir_Actual_Date').value().sort());
+
+                                            function findActualOnair_2G(fruit) {
+                                                return fruit.Status === 'OnAir' && fruit.G2_3G_4G === '2G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                            }
+                                            var all2GActual = data[0].createdprojectData.filter(findActualOnair_2G); //add new function to filter actual On Air date                                                                                                                       
+                                            var OnAir2GActual = jsonQ(all2GActual);
+
+                                            var OnAir_Actual_Date_2G = (OnAir2GActual.find('OnAir_Actual_Date').value().sort());
                                             var OnAir_Target_Date_2G = (OnAir2G.find('OnAir_Target_Date').value().sort());
                                             if ((isNaN(OnAir_Target_Date_2G) !== false) && (isNaN(OnAir_Actual_Date_2G) !== false)) {
                                                 if (OnAir_Target_Date_2G.length !== 0) {
@@ -8694,11 +8881,18 @@ function getSearchDateWeekly() {
 
 //3GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
                                             function find3G(fruit) {
-                                                return fruit.G2_3G_4G === '3G';
+                                                return fruit.G2_3G_4G === '3G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
                                             }
                                             var all3G = data[0].createdprojectData.filter(find3G);
                                             var OnAir3G = jsonQ(all3G);
-                                            var OnAir_Actual_Date_3G = (OnAir3G.find('OnAir_Actual_Date').value().sort());
+
+                                            function findActualOnair_3G(fruit) {
+                                                return fruit.Status === 'OnAir' && fruit.G2_3G_4G === '3G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                            }
+                                            var all3GActual = data[0].createdprojectData.filter(findActualOnair_3G); //add new function to filter actual On Air date                                                                                
+                                            var OnAir3GActual = jsonQ(all3GActual);
+
+                                            var OnAir_Actual_Date_3G = (OnAir3GActual.find('OnAir_Actual_Date').value().sort());
                                             var OnAir_Target_Date_3G = (OnAir3G.find('OnAir_Target_Date').value().sort());
                                             if ((isNaN(OnAir_Target_Date_3G) !== false) && (isNaN(OnAir_Actual_Date_3G) !== false)) {
                                                 if (OnAir_Target_Date_3G.length !== 0) {
@@ -8739,11 +8933,19 @@ function getSearchDateWeekly() {
 
 //4GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG                                        
                                             function find4G(fruit) {
-                                                return fruit.G2_3G_4G === '4G';
+                                                return fruit.G2_3G_4G === '4G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
                                             }
                                             var all4G = data[0].createdprojectData.filter(find4G);
                                             var OnAir4G = jsonQ(all4G);
-                                            var OnAir_Actual_Date_4G = (OnAir4G.find('OnAir_Actual_Date').value().sort());
+
+                                            function findActualOnair_4G(fruit) {
+                                                return fruit.Status === 'OnAir' && fruit.G2_3G_4G === '4G' && fruit.Site_ID !== null && fruit.Site_ID !== "";
+                                            }
+                                            var all4GActual = data[0].createdprojectData.filter(findActualOnair_4G); //add new function to filter actual On Air date                                                                                
+                                            var OnAir4GActual = jsonQ(all4GActual);
+
+
+                                            var OnAir_Actual_Date_4G = (OnAir4GActual.find('OnAir_Actual_Date').value().sort());
                                             var OnAir_Target_Date_4G = (OnAir4G.find('OnAir_Target_Date').value().sort());
                                             if ((isNaN(OnAir_Target_Date_4G) !== false) && (isNaN(OnAir_Actual_Date_4G) !== false)) {
                                                 if (OnAir_Target_Date_4G.length !== 0) {
