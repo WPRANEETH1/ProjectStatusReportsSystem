@@ -12,6 +12,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -23,6 +24,7 @@ public class loadprojectdetailsservicesimpl implements loadprojectdetailsservice
     @Autowired
     private loadprojectdetailsdao loadprojectdetailsdao;
 
+    @Transactional
     @Override
     public Response getProjectNameWithCategoryBuUserName(String userName) {
         JSONObject obj = new JSONObject();
@@ -66,6 +68,7 @@ public class loadprojectdetailsservicesimpl implements loadprojectdetailsservice
         return Response.ok(obj).build();
     }
 
+    @Transactional
     @Override
     public Response getImplementationDateByProjectName(String projectName) {
         JSONArray implementationDate = loadprojectdetailsdao.getImplementationDateByProjectName(projectName);
@@ -73,6 +76,7 @@ public class loadprojectdetailsservicesimpl implements loadprojectdetailsservice
     }
 
 //    ------------------------------------------------------------------
+    @Transactional
     @Override
     public Response getProjectNameWithCategoryByManager() {
         JSONObject obj = new JSONObject();
@@ -118,10 +122,18 @@ public class loadprojectdetailsservicesimpl implements loadprojectdetailsservice
         return Response.ok(obj).build();
     }
 
+    @Transactional
     @Override
     public Response getImplementationDateByProjectNameForManager(String projectName) {
         JSONArray implementationDate = loadprojectdetailsdao.getImplementationDateByProjectNameManager(projectName);
         return Response.ok(implementationDate).build();
+    }
+
+    @Transactional
+    @Override
+    public Response managerDashboardviewAllProject() {
+        JSONArray getallprojectdata = loadprojectdetailsdao.managerDashboardviewAllProject();        
+        return Response.ok(getallprojectdata).build();
     }
 
 }

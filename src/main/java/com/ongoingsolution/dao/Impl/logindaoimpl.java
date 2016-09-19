@@ -143,16 +143,72 @@ public class logindaoimpl implements logindao {
             DB db = mongo.getDB("telecommobitel");
             DBCollection collection = db.getCollection("userdata");
 
-            BasicDBObject newDocumentOne = new BasicDBObject();            
+            BasicDBObject newDocumentOne = new BasicDBObject();
 
-            newDocumentOne.append("$set", new BasicDBObject().append("image", creatUserAccount.getImage()));            
+            newDocumentOne.append("$set", new BasicDBObject().append("image", creatUserAccount.getImage()));
             BasicDBObject searchQuery = new BasicDBObject().append("userName", creatUserAccount.getUserName());
 
-            collection.update(searchQuery, newDocumentOne);            
+            collection.update(searchQuery, newDocumentOne);
             return true;
         } catch (Exception e) {
             System.out.println("Exception Error updateUserData");
             return false;
+        }
+    }
+
+    @Override
+    public JSONArray RetrieveInformation(String email) {
+        try {
+            Mongo mongo = new Mongo("localhost", 27017);
+            DB db = mongo.getDB("telecommobitel");
+            DBCollection collection = db.getCollection("userdata");
+
+            BasicDBObject whereQuery = new BasicDBObject();
+
+            whereQuery.put("email", email);
+
+            DBCursor cursor = collection.find(whereQuery);
+
+            String dataUser = JSON.serialize(cursor);
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(dataUser);
+            JSONArray jsonarray = (JSONArray) obj;
+
+            return jsonarray;
+
+        } catch (Exception e) {
+            System.out.println("Exception Error RetrieveInformation");
+            return null;
+        }
+    }
+
+    @Override
+    public JSONArray getAllEmailAddresswithUserName() {
+        try {
+            Mongo mongo = new Mongo("localhost", 27017);
+            DB db = mongo.getDB("telecommobitel");
+            DBCollection collection = db.getCollection("userdata");
+            BasicDBObject whereQuery = new BasicDBObject();
+            BasicDBObject field = new BasicDBObject();
+            BasicDBObject sortQuery = new BasicDBObject();
+
+//            whereQuery.put("createdprojectUserName", "praneeth");
+            field.put("userName", 1);
+            field.put("email", 1);
+            field.put("image", 1);
+
+            DBCursor cursor = collection.find(whereQuery, field);
+
+            String dataUser = JSON.serialize(cursor);
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(dataUser);
+            JSONArray jsonarray = (JSONArray) obj;
+
+            return jsonarray;
+
+        } catch (Exception e) {
+            System.out.println("Exception Error getAllEmailAddresswithUserName");
+            return null;
         }
     }
 

@@ -12,6 +12,23 @@
 
         <script src="project_engineer/assets/jquery/jquery.min.js"></script>                
 
+        <!--google pagination table js file-->
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+
+        <script src="http://jquerypp.com/release/latest/jquerypp.js"></script> 
+        <script src="login/implementation/bootstrap-notify.js"></script> 
+        <style>
+            [data-notify="container"]{
+                background-color: #bce8f1;
+            }
+            [data-notify="container"].alert-pastel-mywarning {
+                background-color: #ff3333;
+            }
+            [data-notify="container"].alert-pastel-myinfo {
+                background-color: #ffff4d;
+            }                     
+        </style>
+
         <!-- Include Required Prerequisites -->
         <script src="project_engineer/datepicker/moment.js"></script>
         <script type="text/javascript" src="project_engineer/datepicker/moment.min.js"></script>        
@@ -64,7 +81,7 @@
                 margin: 0px 0;
                 list-style-type: none;
                 position: relative;
-                padding: 20px 5px 0px 5px;
+                padding: 10px 5px 0px 5px;
             }
             .tree li::before {
                 content:'';
@@ -172,6 +189,7 @@
         <%@include file="project_engineer/jsp/modal/modaljsp/openproject.jsp" %>
         <%@include file="project_engineer/jsp/modal/modaljsp/profile.jsp" %>
         <%@include file="project_engineer/jsp/modal/modaljsp/managerWorning.jsp" %>
+        <%@include file="project_engineer/jsp/modal/modaljsp/mailmodal.jsp" %>
         <%@include file="project_engineer/jsp/modal/modaljsp/issuesAdd.jsp" %>
         <%@include file="project_engineer/jsp/modal/modaljsp/issuesEdit.jsp" %>
         <%@include file="project_engineer/jsp/modal/modaljsp/createnewproject.jsp" %>        

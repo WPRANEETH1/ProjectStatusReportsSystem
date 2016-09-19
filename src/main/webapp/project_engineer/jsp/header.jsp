@@ -2,7 +2,7 @@
 
     <input type="hidden" id="sessionusername" value="<%=session.getAttribute("userName")%>"/>
     <input type="hidden" id="userRole" value="<%=session.getAttribute("userRole")%>"/>
-    <input type="hidden" id="projectname"/>
+<!--    <input type="hidden" id="projectname"/>-->
     <input type="hidden" id="projectnameDelete"/>
     <input type="hidden" id="pagenumber"/>      
 
@@ -30,7 +30,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#" onclick="return profile();"><i class="fa fa-user"></i> Profile</a>
+                            <a href="javascript:void(0);" onclick="return profile();"><i class="fa fa-user"></i> Profile</a>
                         </li>
                         <li><a href="#"><i class="fa fa-tasks"></i> Tasks</a></li>
                         <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
@@ -44,12 +44,12 @@
                     <div class="tab-content" style="margin: 0px;height: 35px;width: 460px;padding: 0px;padding-bottom: 10px;padding-top: 4px;background-color: transparent;border: 0px">
                         <div class="tab-pane active" id="messages-2">
                             <div>
-                                <a href="#" onclick="return loadhomepage();" style="color: palegreen"><div class="col-sm-2"><i class="fa fa-dashboard" style="font-size: x-large;"></i> Panel</div></a>
-                                <a href="#" onclick="return createproject();" style="color: palegreen"><div class="col-sm-2"><i class="fa fa-file" style="font-size: x-large;"></i>&nbsp;new</div></a>
-                                <a href="#" onclick="return openExcelFile();" style="color: palegreen"><div class="col-sm-2"><i class="fa fa-folder-open-o" style="font-size: x-large;"></i>open</div></a>
-                                <a href="#" id="saveExcelFile" style="color: palegreen"><div class="col-sm-2"><i class="fa fa-save" style="font-size: x-large;"></i>save</div></a>
-                                <a href="#" onclick="return deleteproject();" style="color: palegreen"><div class="col-sm-2"><i class="fa fa-times" style="font-size: x-large;"></i>Delete</div></a>                                
-                                <a href="#" onclick="return exportExcel();" style="color: palegreen"><div class="col-sm-2"><i class="fa fa-upload" style="font-size: x-large;"></i>export</div></a>
+                                <a href="javascript:void(0);" onclick="return loadhomepage();" style="color: palegreen"><div class="col-sm-2"><i class="fa fa-dashboard" style="font-size: x-large;"></i> Panel</div></a>
+                                <a href="javascript:void(0);" onclick="return createproject();" style="color: palegreen"><div class="col-sm-2"><i class="fa fa-file" style="font-size: x-large;"></i>&nbsp;new</div></a>
+                                <a href="javascript:void(0);" onclick="return openExcelFile();" style="color: palegreen"><div class="col-sm-2"><i class="fa fa-folder-open-o" style="font-size: x-large;"></i>open</div></a>
+                                <a href="javascript:void(0);" id="saveExcelFile" style="color: palegreen"><div class="col-sm-2"><i class="fa fa-save" style="font-size: x-large;"></i>save</div></a>
+                                <a href="javascript:void(0);" onclick="return deleteproject();" style="color: palegreen"><div class="col-sm-2"><i class="fa fa-times" style="font-size: x-large;"></i>Delete</div></a>                                
+                                <a href="javascript:void(0);" onclick="return exportExcel();" style="color: palegreen"><div class="col-sm-2"><i class="fa fa-upload" style="font-size: x-large;"></i>export</div></a>
                             </div>
                         </div>
                         <div class="tab-pane" id="profile-2">
@@ -58,14 +58,14 @@
                                 <!--<a href="#" style="color: palegreen"><div class="col-sm-2"><i class="fa fa-cut" style="font-size: x-large;"></i>cut</div></a>-->
                                 <!--<a href="#" style="color: palegreen"><div class="col-sm-2"><i class="fa fa-paste" style="font-size: x-large;"></i>past</div></a>-->
                                 <a href="#" style="color: palegreen"><div class="col-sm-2"><i class="fa fa-search" style="font-size: x-large;"></i>search</div></a>
-                                <a href="#" style="color: palegreen"><div class="col-sm-4 " align="center"><input type="text" style="color: black"/></div></a>                                
+                                <a href="#" style="color: palegreen"><div class="col-sm-4 " align="center"><input id="search_field" type="search" style="color: black"/></div></a>                                
                             </div>
                         </div>
                         <div class="tab-pane " id="home-2">
                             <div>
                                 <!--<a href="#" style="color: palegreen"><div class="col-sm-2"><i class="fa fa-filter" style="font-size: x-large;"></i>filter</div></a>-->
-                                <a href="#" onclick="return loadProjectProfile();" style="color: palegreen"><div class="col-sm-4"><i class="fa fa-folder-open-o" style="font-size: x-large;"></i>Project Profile</div></a>
-                                <a href="#" onclick="return refresh();" style="color: palegreen"><div class="col-sm-2"><i class="fa fa-refresh" style="font-size: x-large;"></i>refresh</div></a>                                
+                                <a href="javascript:void(0);" onclick="return loadProjectProfile();" style="color: palegreen"><div class="col-sm-4"><i class="fa fa-folder-open-o" style="font-size: x-large;"></i>Project Profile</div></a>
+                                <a href="javascript:void(0);" onclick="return refresh();" style="color: palegreen"><div class="col-sm-2"><i class="fa fa-refresh" style="font-size: x-large;"></i>refresh</div></a>                                
                             </div>
                         </div>
                         <div class="tab-pane" id="settings-2">
@@ -112,7 +112,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="javascript:void(0);" onclick="return emailmodal();">
                     <strong class="label label-danger">7</strong>
                     <i class="fa fa-comments"></i>
                     <span>Messages</span>                    

@@ -18,12 +18,13 @@ public interface loadprojectdetailsdao {
     JSONArray getProjectNameWithCategoryBuUserNameotherProject(String userName, String projectCategory);
 
     JSONArray getImplementationDateByProjectName(String projectName);
-    
-//-----------------------------------------------------------
 
+//-----------------------------------------------------------
     JSONArray getProjectNameWithCategoryBuManager(String projectSubCategory);
 
     JSONArray getProjectNameWithCategoryBuManagerotherProject(String projectCategory);
 
     JSONArray getImplementationDateByProjectNameManager(String projectName);
+
+    JSONArray managerDashboardviewAllProject();
 }

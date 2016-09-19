@@ -14,6 +14,8 @@ $(document).ready(function () {
     $('#deleteproject').modal('hide');
     $('#managerworning').modal('hide');
     $('#success').modal('hide');
+    $('#emailmodal').modal('hide');
+
     var userrole = $('#userRole').val();
     if (userrole === "manager") {
         loadDashboardManager();
@@ -471,11 +473,16 @@ function loadDashboardManager() {
         url: '/ProjectStatusReportsSystem/rest/psrservices/getexceldataservices/mainManagerLoadDashboard',
         contentType: 'application/json',
         success: function (data, textStatus, jqXHR) {
+            console.log(data);
             var val = 0;
             var name = "";
             for (i = 0; i < data.length; i++) {
-                if (val <= data[i].createdprojectData.length) {
-                    val = data[i].createdprojectData.length;
+                function findOnAir(dataproject) {
+                    return dataproject.Status === 'OnAir';
+                }
+                var allonair = data[i].createdprojectData.filter(findOnAir);                
+                if (val <= allonair.length) {
+                    val = allonair.length;
                     name = (data[i].createdprojectName);
                 }
             }
@@ -501,8 +508,12 @@ function loadDashboardEngineer() {
             var val = 0;
             var name = "";
             for (i = 0; i < data.length; i++) {
-                if (val <= data[i].createdprojectData.length) {
-                    val = data[i].createdprojectData.length;
+                function findOnAir(dataproject) {
+                    return dataproject.Status === 'OnAir';
+                }
+                var allonair = data[i].createdprojectData.filter(findOnAir);                
+                if (val <= allonair.length) {
+                    val = allonair.length;
                     name = (data[i].createdprojectName);
                 }
             }
@@ -514,4 +525,107 @@ function loadDashboardEngineer() {
             alert("Error loadDashboardManager");
         }
     });
+}
+
+function emailmodal() {
+    $.ajax({
+        type: 'POST',
+        url: '/ProjectStatusReportsSystem/rest/psrservices/sendemailservices/getAllemailWithImage',
+        contentType: 'application/json',
+        success: function (data, textStatus, jqXHR) {
+            $('#emailmodal').modal('show');
+            $("#to").empty();
+            $("#to").append("<option value='' name=''></option>");
+            $.each(data, function (index, optiondata) {
+                if (optiondata !== "undefined") {
+                    $("#to").append("<option value='" + ((optiondata.email)) + "' name='" + (optiondata.email) + "'>" + (optiondata.email) + "</option>");
+                }
+            });
+            $("#cc").empty();
+            $("#cc").append("<option value='' name=''></option>");
+            $.each(data, function (index, optiondata) {
+                if (optiondata !== "undefined") {
+                    $("#cc").append("<option value='" + ((optiondata.email)) + "' name='" + (optiondata.email) + "'>" + (optiondata.email) + "</option>");
+                }
+            });
+            $("#bcc").empty();
+            $("#bcc").append("<option value='' name=''></option>");
+            $.each(data, function (index, optiondata) {
+                if (optiondata !== "undefined") {
+                    $("#bcc").append("<option value='" + ((optiondata.email)) + "' name='" + (optiondata.email) + "'>" + (optiondata.email) + "</option>");
+                }
+            });
+
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert("Error loadDashboardManager");
+        }
+    });
+}
+
+function sendmaildata() {
+    if (JSON.stringify(mailObj()) !== "null") {
+        $.ajax({
+            type: 'POST',
+            url: '/ProjectStatusReportsSystem/rest/psrservices/sendemailservices/sendEmail',
+            data: mailObj(),
+            contentType: 'application/json',
+            success: function (data, textStatus, jqXHR) {
+                if (data === "CREATED") {
+                    $('#emailmodal').modal('hide');
+                    $.notify({
+                        icon: 'glyphicon glyphicon-star',
+                        title: "<strong>Warning:</strong> ",
+                        message: "<h6 style='color:black'>Success!...</h6>"
+                    }, {
+                        type: 'pastel-myinfo',
+                        delay: 1000
+                    });
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert("Error sendmaildata");
+            }
+        });
+    } else {
+        $('#emailmodal').modal('hide');
+        $.notify({
+            icon: 'glyphicon glyphicon-star',
+            title: "<strong>Warning:</strong> ",
+            message: "<h6 style='color:black'>Please fill in the required fields..</h6>"
+        }, {
+            type: 'pastel-mywarning',
+            delay: 1000
+        });
+    }
+}
+
+function mailObj() {
+    var to = $('#to').val();
+    var cc = $('#cc').val();
+    var bcc = $('#bcc').val();
+    var subject = $('#subject').val();
+    var body = $('#body').val();
+
+    var email = null;
+    if (to !== "" && subject !== "" && body !== "") {
+        email = {
+            to: to,
+            cc: cc,
+            bcc: bcc,
+            subject: subject,
+            body: body
+        };
+        return JSON.stringify(email);
+    } else {
+        return email;
+    }
+}
+
+function resetMail() {
+    $('#to').val("");
+    $('#cc').val("");
+    $('#bcc').val("");
+    $('#subject').val("");
+    $('#body').val("");
 }

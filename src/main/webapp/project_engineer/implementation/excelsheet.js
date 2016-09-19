@@ -36,11 +36,12 @@ function loadexcelshetByprojectEngineer() {
 function viewexcelsheet(exceldata) {
     $('#projectnameDelete').val(exceldata[0].createdprojectName);
     $('#projectname').val("");
-    console.log(exceldata);
+//    console.log(exceldata);
     document.addEventListener("DOMContentLoaded", function () {
         var
                 data = exceldata[0].createdprojectData,
                 container = document.getElementById('example1'),
+                searchFiled = document.getElementById('search_field'),
                 hot1,
                 yellowRenderer,
                 greenRenderer;
@@ -101,7 +102,8 @@ function viewexcelsheet(exceldata) {
 //                console.log((updateexcelData));
                 var rootURL = '/ProjectStatusReportsSystem/rest/psrservices/getexceldataservices/updateexcelprojectdata';
                 var userrole = $('#userRole').val();
-                if (userrole === "manager") {
+                var userName = $('#sessionusername').val();
+                if (userrole === "manager" && userName !== "Senuri") {
                     $('#managerworning').modal('show');
                 }
                 if (userrole === "engineer") {
@@ -114,7 +116,28 @@ function viewexcelsheet(exceldata) {
 //                        console.log(data);
 //                            alert("suc");
                             $('#success').modal('show');
-                            setTimeout(function() { $('#success').modal('hide'); }, 1000);
+                            setTimeout(function () {
+                                $('#success').modal('hide');
+                            }, 1000);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert("Error load loadexceldata");
+                        }
+                    });
+                }
+                if (userName === "Senuri") {
+                    $.ajax({
+                        type: 'POST',
+                        url: rootURL,
+                        data: JSON.stringify(updateexcelData),
+                        contentType: 'application/json',
+                        success: function (data, textStatus, jqXHR) {
+//                        console.log(data);
+//                            alert("suc");
+                            $('#success').modal('show');
+                            setTimeout(function () {
+                                $('#success').modal('hide');
+                            }, 1000);
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
                             alert("Error load loadexceldata");
@@ -122,6 +145,13 @@ function viewexcelsheet(exceldata) {
                     });
                 }
             });
+
+            Handsontable.Dom.addEvent(searchFiled, 'keyup', function (event) {
+                var queryResult = hot1.search.query(this.value);
+//                console.log(queryResult);
+                hot1.render();
+            });
+
             Handsontable.Dom.addEvent(document.body, 'click', function (e) {
 
                 var element = e.target || e.srcElement;

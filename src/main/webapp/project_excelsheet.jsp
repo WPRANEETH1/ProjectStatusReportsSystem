@@ -11,7 +11,24 @@
         <title>project_engineer template by Ongoing Solution</title>
 
         <script src="project_engineer/assets/jquery/jquery.min.js"></script>        
-        
+
+        <script src="http://jquerypp.com/release/latest/jquerypp.js"></script> 
+        <script src="login/implementation/bootstrap-notify.js"></script> 
+        <style>
+            /*            .handsontable td.htSearchResult { I change handsontable.full.min
+                            background:greenyellow; 
+                        }*/
+            [data-notify="container"]{
+                background-color: #bce8f1;
+            }
+            [data-notify="container"].alert-pastel-mywarning {
+                background-color: #ff3333;
+            }
+            [data-notify="container"].alert-pastel-myinfo {
+                background-color: #ffff4d;
+            }                     
+        </style>
+
         <!-- Include Required Prerequisites -->
         <script src="project_engineer/datepicker/moment.js"></script>
         <script type="text/javascript" src="project_engineer/datepicker/moment.min.js"></script>        
@@ -51,6 +68,9 @@
         <script src="project_engineer/implementation/loadmodal.js"></script>
         <script src="project_engineer/implementation/excelsheet.js"></script>
         <style>
+            .currentRow {
+                background-color: #1E90FF !important;
+            }           
             .handsontable table thead th{
                 background-color: #99ffff;
                 /*   color:white;*/
@@ -85,12 +105,13 @@
         <%@include file="project_engineer/jsp/modal/modaljsp/profile.jsp" %>
         <%@include file="project_engineer/jsp/modal/modaljsp/deleteProject.jsp" %>
         <%@include file="project_engineer/jsp/modal/modaljsp/managerWorning.jsp" %>
+        <%@include file="project_engineer/jsp/modal/modaljsp/mailmodal.jsp" %>
         <%@include file="project_engineer/jsp/modal/modaljsp/success.jsp" %>
         <%@include file="project_engineer/jsp/modal/modaljsp/createnewproject.jsp" %>
         <%@include file="project_engineer/jsp/modal/modaljsp/projectProfile.jsp" %>
         <%@include file="project_engineer/jsp/modal/modaljsp/information.jsp" %>
     </body>       
-    
+
     <script src="project_engineer/implementation/smcpcreateproject.js"></script>
     <script src="project_engineer/implementation/accncreateproject.js"></script>
     <script src="project_engineer/implementation/trimplcreateproject.js"></script>

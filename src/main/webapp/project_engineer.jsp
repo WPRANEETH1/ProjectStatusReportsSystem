@@ -10,7 +10,24 @@
         <link rel="shortcut icon" href="login/css/images/mobitel.ico">
         <title>project_engineer template by Ongoing Solution</title>
 
-        <script src="project_engineer/assets/jquery/jquery.min.js"></script>                
+        <script src="project_engineer/assets/jquery/jquery.min.js"></script> 
+
+        <!--google pagination table js file-->
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+
+        <script src="http://jquerypp.com/release/latest/jquerypp.js"></script> 
+        <script src="login/implementation/bootstrap-notify.js"></script> 
+        <style>
+            [data-notify="container"]{
+                background-color: #bce8f1;
+            }
+            [data-notify="container"].alert-pastel-mywarning {
+                background-color: #ff3333;
+            }
+            [data-notify="container"].alert-pastel-myinfo {
+                background-color: #ffff4d;
+            }                  
+        </style>
 
         <!-- Include Required Prerequisites -->
         <script src="project_engineer/datepicker/moment.js"></script>
@@ -47,13 +64,13 @@
         <script type="text/javascript" src="project_engineer/assets/js/application_blank.js"></script>
 
         <!--modal-->
-        <link href="project_engineer/jsp/modal/css/custombox.min.css" rel="stylesheet">        
+        <!--<link href="project_engineer/jsp/modal/css/custombox.min.css" rel="stylesheet">-->        
         <link href="project_engineer/jsp/modal/css/core.css" rel="stylesheet" type="text/css" />
         <link href="project_engineer/jsp/modal/css/components.css" rel="stylesheet" type="text/css" />
 
         <script src="project_engineer/pagination/js/jquery.twbsPagination.js"></script>        
 
-        <style>
+        <style>            
             .tree lix {
                 margin: 0px 0;
                 list-style-type: none;
@@ -64,7 +81,7 @@
                 margin: 0px 0;
                 list-style-type: none;
                 position: relative;
-                padding: 20px 5px 0px 5px;
+                padding: 10px 5px 0px 5px;
             }
             .tree li::before {
                 content:'';
@@ -171,6 +188,7 @@
         <%@include file="project_engineer/jsp/content.jsp" %>        
         <%@include file="project_engineer/jsp/modal/modaljsp/openproject.jsp" %>
         <%@include file="project_engineer/jsp/modal/modaljsp/profile.jsp" %>
+        <%@include file="project_engineer/jsp/modal/modaljsp/mailmodal.jsp" %>
         <%@include file="project_engineer/jsp/modal/modaljsp/issuesAdd.jsp" %>
         <%@include file="project_engineer/jsp/modal/modaljsp/issuesEdit.jsp" %>
         <%@include file="project_engineer/jsp/modal/modaljsp/createnewproject.jsp" %>        
@@ -325,11 +343,11 @@
     <!--<script src="project_engineer/treeview/shieldui-all.min.js"></script>-->
     <script type='text/javascript' src='https://www.google.com/jsapi'></script>
     <!--<script src="project_engineer/treeview/jsapi.js"></script>-->
-    <script>        
-        google.load('visualization', '1', {packages: ['orgchart']});
-        google.setOnLoadCallback(drawChart);
+    <script>
+            google.load('visualization', '1', {packages: ['orgchart']});
+            google.setOnLoadCallback(drawChart);
     </script>
-    
+
     <style>
         .sui-treeview-item-text:hover{color:#fff;background-color:white}
         .google-visualization-orgchart-node {border: aliceblue}   
@@ -339,24 +357,30 @@
             height:100px;
         }
     </style>
-    
+
 
     <script src="project_engineer/jsp/modal/js/custombox.min.js"></script>
     <script src="project_engineer/jsp/modal/js/legacy.min.js"></script>    
     <script>
-            var uName = $('#sessionusername').val();
-            if (isNaN(uName === false) || (uName === "null")) {
-                $.ajax({
-                    type: 'GET',
-                    url: "/ProjectStatusReportsSystem/rest/psrservices/logoutservices/logout",
-                    contentType: 'application/json',
-                    success: function (data, textStatus, jqXHR) {
-                        $('#sessionusername').val("");
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                    }
-                });
-                window.location.replace("index.jsp");
+            function loadlink() {
+                var uName = $('#sessionusername').val();
+                if (isNaN(uName === false) || (uName === "null")) {
+                    $.ajax({
+                        type: 'GET',
+                        url: "/ProjectStatusReportsSystem/rest/psrservices/logoutservices/logout",
+                        contentType: 'application/json',
+                        success: function (data, textStatus, jqXHR) {
+                            $('#sessionusername').val("");
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                        }
+                    });
+                    window.location.replace("index.jsp");
+                }
             }
+            loadlink(); // This will run on page load
+            setInterval(function () {
+                loadlink() // this will run after every 5 seconds
+            }, 5000);
     </script>
 </html>

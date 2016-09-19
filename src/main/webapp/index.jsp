@@ -20,7 +20,19 @@
         <link rel="stylesheet" href="login/css/ace.min.css" />
         <link rel="stylesheet" href="login/css/ace-rtl.min.css" />
         <script src="login/js/jquery.min.js"></script>
-        <script src="login/implementation/loginvalidation.js"></script>
+        <script src="http://jquerypp.com/release/latest/jquerypp.js"></script> 
+        <script src="login/implementation/bootstrap-notify.js"></script> 
+        <style>
+            [data-notify="container"]{
+                background-color: #bce8f1;
+            }
+            [data-notify="container"].alert-pastel-mywarning {
+                background-color: #ff3333;
+            }
+            [data-notify="container"].alert-pastel-myinfo {
+                background-color: #ffff4d;
+            }        
+        </style>
     </head>
 
     <body class="login-layout">
@@ -72,7 +84,7 @@
 
                                                     <div class="clearfix">
                                                         <label class="inline">
-                                                            <input type="checkbox" class="ace" />
+                                                            <input id="rememberme" type="checkbox" class="ace" />
                                                             <span class="lbl"> Remember Me</span>
                                                         </label>
 
@@ -135,20 +147,20 @@
 
                                             <div class="space-6"></div>
                                             <p>
-                                                Enter your email and to receive instructions
+                                                Enter your email to receive your information.
                                             </p>
 
                                             <form>
                                                 <fieldset>
                                                     <label class="block clearfix">
                                                         <span class="block input-icon input-icon-right">
-                                                            <input type="email" class="form-control" placeholder="Email" />
+                                                            <input type="email" class="form-control" id="Retrieveemail" placeholder="Email" />
                                                             <i class="ace-icon fa fa-envelope"></i>
                                                         </span>
                                                     </label>
 
                                                     <div class="clearfix">
-                                                        <button type="button" class="width-35 pull-right btn btn-sm btn-danger">
+                                                        <button type="button" onclick="Retrieveemailfunction();" class="width-35 pull-right btn btn-sm btn-danger">
                                                             <i class="ace-icon fa fa-lightbulb-o"></i>
                                                             <span class="bigger-110">Send Me!</span>
                                                         </button>
@@ -192,6 +204,13 @@
                                                             <input type="text" class="form-control" id="lastName" placeholder="Last Name" />
                                                             <i class="ace-icon fa fa-user"></i>
                                                         </span>
+                                                    </label>                                                    
+
+                                                    <label class="block clearfix">
+                                                        <span class="block input-icon input-icon-right">
+                                                            <input type="text" class="form-control" id="userNameReg" placeholder="Username" />
+                                                            <i class="ace-icon fa fa-user"></i>
+                                                        </span>
                                                     </label>
 
                                                     <label class="block clearfix">
@@ -203,17 +222,16 @@
 
                                                     <label class="block clearfix">
                                                         <span class="block input-icon input-icon-right">
-                                                            <input type="text" class="form-control" id="userNameReg" placeholder="Username" />
-                                                            <i class="ace-icon fa fa-user"></i>
+                                                            <input type="email" class="form-control" id="conformemailReg" placeholder="Confirm Email" />
+                                                            <i class="ace-icon fa fa-envelope"></i>
                                                         </span>
                                                     </label>
-
-                                                    <label class="block clearfix">
-                                                        <span class="block input-icon input-icon-right">
-                                                            <input type="password" class="form-control" id="passWordReg" placeholder="Password" />
-                                                            <i class="ace-icon fa fa-lock"></i>
-                                                        </span>
-                                                    </label>
+                                                    <!--                                                    <label class="block clearfix">
+                                                                                                            <span class="block input-icon input-icon-right">
+                                                                                                                <input type="password" class="form-control" id="passWordReg" placeholder="Password" />
+                                                                                                                <i class="ace-icon fa fa-lock"></i>
+                                                                                                            </span>
+                                                                                                        </label>-->
 
                                                     <!--                                                    <label class="block clearfix">
                                                                                                             <span class="block input-icon input-icon-right">
@@ -222,13 +240,13 @@
                                                                                                             </span>
                                                                                                         </label>-->
 
-<!--                                                    <label class="block">
-                                                        <input type="checkbox" class="ace" />
-                                                        <span class="lbl">
-                                                            I accept the
-                                                            <a href="#">User Agreement</a>
-                                                        </span>
-                                                    </label>-->
+                                                    <!--                                                    <label class="block">
+                                                                                                            <input type="checkbox" class="ace" />
+                                                                                                            <span class="lbl">
+                                                                                                                I accept the
+                                                                                                                <a href="#">User Agreement</a>
+                                                                                                            </span>
+                                                                                                        </label>-->
 
                                                     <div class="space-24"></div>
 
@@ -249,7 +267,7 @@
                                         </div>
 
                                         <div class="toolbar center">
-                                            <a href="#" data-target="#login-box" class="back-to-login-link">
+                                            <a href="#" id="backlogin" data-target="#login-box" class="back-to-login-link">
                                                 <i class="ace-icon fa fa-arrow-left"></i>
                                                 Back to login
                                             </a>
@@ -282,6 +300,7 @@
             if ('ontouchstart' in document.documentElement)
                 document.write("<script src='login/components/_mod/jquery.mobile.custom/jquery.mobile.custom.min.js'>" + "<" + "/script>");
         </script>
+        <script src="login/implementation/loginvalidation.js"></script>
         <!-- inline scripts related to this page -->
         <script type="text/javascript">
             jQuery(function ($) {
@@ -314,6 +333,43 @@
 
                     e.preventDefault();
                 });
+            });
+        </script>
+        <script>
+            var validateEmail = function (elementValue) {
+                var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                return emailPattern.test(elementValue);
+            };
+
+            $('#emailReg').keyup(function () {
+                var value = $(this).val();
+                var valid = validateEmail(value);
+                if (!valid) {
+                    $(this).css('color', 'red');
+                } else {
+                    $(this).css('color', '#000');
+
+                }
+            });
+            $('#conformemailReg').keyup(function () {
+                var value = $(this).val();
+                var valid = validateEmail(value);
+                if (!valid) {
+                    $(this).css('color', 'red');
+                } else {
+                    $(this).css('color', '#000');
+
+                }
+            });
+            $('#Retrieveemail').keyup(function () {
+                var value = $(this).val();
+                var valid = validateEmail(value);
+                if (!valid) {
+                    $(this).css('color', 'red');
+                } else {
+                    $(this).css('color', '#000');
+
+                }
             });
         </script>
     </body>

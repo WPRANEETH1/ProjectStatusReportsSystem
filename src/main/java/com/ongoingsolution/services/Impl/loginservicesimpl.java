@@ -79,6 +79,8 @@ public class loginservicesimpl implements loginservices {
     @Override
     public Response createUser(CreatUserAccount creatUserAccount) {
         try {
+            String password = passwordgenarter.getSaltString();
+            creatUserAccount.setPassWord(password);
             Boolean val = logindao.createUser(creatUserAccount);
             if (val == true) {
                 return Response.ok(Response.Status.CREATED).build();

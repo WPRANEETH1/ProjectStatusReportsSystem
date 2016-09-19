@@ -24,4 +24,8 @@ public interface logindao {
     public boolean updateUserData(CreatUserAccount creatUserAccount);
     
     public boolean updateUserImage(CreatUserAccount creatUserAccount);
+    
+    JSONArray RetrieveInformation(String email);
+    
+    JSONArray getAllEmailAddresswithUserName();
 }

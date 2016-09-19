@@ -3,6 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+window.onload = logiremenberme();
+
+function logiremenberme() {
+    var checkval = $.cookie('checked_cooli');
+    if (checkval === "true") {
+        var username = $.cookie('username_cooki');
+        var password = $.cookie('password_cooli');
+        $('#userName').val(username);
+        $('#passWord').val(password);
+        $("#rememberme").prop('checked', true);
+    }
+}
+
 function loginObject() {
     var userName = $('#userName').val();
     var passWord = $('#passWord').val();
@@ -29,8 +42,26 @@ function loadLoginValidation() {
                 if (data !== "EXPECTATION_FAILED") {
                     if (data !== "NOT_FOUND") {
                         if (data.userName !== null && data.userRole === "engineer") {
+                            if ($('#rememberme').is(":checked")) {
+                                $.cookie('checked_cooli', true);
+                                $.cookie('username_cooki', data.userName);
+                                $.cookie('password_cooli', $('#passWord').val());
+                            } else {
+                                $.cookie('checked_cooli', null);
+                                $.cookie('username_cooki', null);
+                                $.cookie('password_cooli', null);
+                            }
                             window.location.replace("project_engineer.jsp?projectName=" + btoa(null) + "");
                         } else if (data.userName !== null && data.userRole === "manager") {
+                            if ($('#rememberme').is(":checked")) {
+                                $.cookie('checked_cooli', true);
+                                $.cookie('username_cooki', data.userName);
+                                $.cookie('password_cooli', $('#passWord').val());
+                            } else {
+                                $.cookie('checked_cooli', null);
+                                $.cookie('username_cooki', null);
+                                $.cookie('password_cooli', null);
+                            }
                             window.location.replace("project_manager.jsp?projectName=" + btoa(null) + "");
                         } else {
                             window.location.replace("index.jsp");
@@ -64,7 +95,7 @@ function registerUserObject() {
     var firstName = $('#firstName').val();
     var lastName = $('#lastName').val();
     var userName = $('#userNameReg').val();
-    var passWord = $('#passWordReg').val();
+    var conformEmail = $('#conformemailReg').val();
     var email = $('#emailReg').val();
 
     var department = "Mobitel Eng Off";
@@ -73,12 +104,11 @@ function registerUserObject() {
     var userRole = "manager";
 
     var registerUser = null;
-    if (firstName !== "" && lastName !== "" && userName !== "" && passWord !== "" && email !== "") {
+    if (firstName !== "" && lastName !== "" && userName !== "" && conformEmail !== "" && email !== "" && (conformEmail === email)) {
         registerUser = {
             firstName: firstName,
             lastName: lastName,
             userName: userName,
-            passWord: passWord,
             email: email,
             department: department,
             image: image,
@@ -92,6 +122,8 @@ function registerUserObject() {
 }
 
 function createdEngaccount() {
+    var conformEmail = $('#conformemailReg').val();
+    var email = $('#emailReg').val();
     if (JSON.stringify(registerUserObject()) !== "null") {
         $.ajax({
             type: 'POST',
@@ -101,10 +133,46 @@ function createdEngaccount() {
             success: function (data, textStatus, jqXHR) {
 //            alert(data);
                 if (data === "CREATED") {
-                    window.location.replace("index.jsp");
+
+                    var notify = $.notify('<strong>Saving</strong> Do not close this page...', {
+                        allow_dismiss: false,
+                        showProgressbar: true
+                    });
+
+                    setTimeout(function () {
+                        notify.update({'type': 'success', 'message': '<strong>Success</strong> Your registation data has been saved!', 'progress': 50});
+                    }, 6500);
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/ProjectStatusReportsSystem/rest/psrservices/sendemailservices/sendMail/' + JSON.parse(registerUserObject()).userName,
+                        contentType: 'application/json',
+                        success: function (data, textStatus, jqXHR) {
+                            if (data === "CREATED") {
+                                $('#backlogin').trigger('click');
+                                $.notify({
+                                    icon: 'glyphicon glyphicon-star',
+                                    message: "Your account has been successfully created. Please check your email for the instructions on how to conform your account!."                                    
+                                }, {
+                                    delay: 8000
+                                });
+                                resetform();
+                            }
+                        }, error: function (jqXHR, textStatus, errorThrown) {
+                        }
+                    });
+//                    window.location.replace("index.jsp");
                 } else if (data === "NOT_ACCEPTABLE") {
-                    $('#usernameexist').text("User Name Already Exists!");
-                    $('#hidesubtitle').text("");
+                    $.notify({
+                        icon: 'glyphicon glyphicon-warning-sign',
+                        title: "<strong>Sorry !: </strong> ",
+                        message: " That username or E-mail is already taken..."
+                    }, {
+                        type: 'pastel-mywarning',
+                        delay: 6000
+                    });
+//                    $('#usernameexist').text("User Name Already Exists!");
+//                    $('#hidesubtitle').text("");
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -112,8 +180,84 @@ function createdEngaccount() {
             }
         });
     } else {
-        $('#usernameexist').text("Enter all fields!");
-        $('#hidesubtitle').text("");
+        if (conformEmail !== email) {
+            $.notify({
+                icon: 'glyphicon glyphicon-star',
+                title: "<strong>Warning:</strong> ",
+                message: "The email address do not match.."
+            }, {
+                type: 'pastel-mywarning',
+                delay: 6000
+            });
+        }
+        if (conformEmail === email) {
+            $.notify({
+                icon: 'glyphicon glyphicon-star',
+                title: "<strong>Warning:</strong> ",
+                message: "Please fill in all of the required fields"
+            }, {
+                type: 'pastel-myinfo',
+                delay: 6000
+            });
+//        $('#usernameexist').text("Enter all fields!");
+//        $('#hidesubtitle').text("");
+        }
     }
 }
 
+function resetform() {
+    $('#firstName').val("");
+    $('#lastName').val("");
+    $('#userNameReg').val("");
+    $('#passWordReg').val("");
+    $('#emailReg').val("");
+}
+
+function Retrieveemailfunction() {
+    var Retrieveemail = $('#Retrieveemail').val();
+    var valid = validateEmail(Retrieveemail);
+    if (!valid) {
+        $.notify({
+            icon: 'glyphicon glyphicon-star',
+            title: "<strong>Warning:</strong> ",
+            message: "Cannot get information : mail is incorrect"
+        }, {
+            type: 'pastel-mywarning',
+            delay: 6000
+        });
+    } else {
+        $.ajax({
+            type: 'POST',
+            url: '/ProjectStatusReportsSystem/rest/psrservices/sendemailservices/retrieveInformation/' + Retrieveemail,
+            contentType: 'application/json',
+            success: function (data, textStatus, jqXHR) {
+                if (data === "CREATED") {
+                    $('#backlogin').trigger('click');
+                    $('#Retrieveemail').val("");
+                    $.notify({
+                        icon: 'glyphicon glyphicon-star',
+                        message: "Your request has been successfully received. Please check your email for view the information!."                        
+                    }, {
+                        delay: 8000
+                    });
+                }
+                if (data === "NOT_ACCEPTABLE") {
+                    $.notify({
+                        icon: 'glyphicon glyphicon-star',
+                        title: "<strong>Warning:</strong> ",
+                        message: "The email is incorrect."
+                    }, {
+                        type: 'pastel-myinfo',
+                        delay: 6000
+                    });
+                }
+            }, error: function (jqXHR, textStatus, errorThrown) {
+            }
+        });
+    }
+}
+
+var validateEmail = function (elementValue) {
+    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailPattern.test(elementValue);
+};
