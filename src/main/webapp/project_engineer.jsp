@@ -29,6 +29,27 @@
             }                  
         </style>
 
+
+<!--        Dependency list org chart
+        <link href="orgchart/orgchart.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="orgchart/orgchart.js"></script>
+        <script>
+            $(document).ready(function () {
+                // create a tree
+                $("#tree-data").jOrgChart({
+                    chartElement: $("#tree-view"),
+                    nodeClicked: nodeClicked});
+
+                // lighting a node in the selection
+                function nodeClicked(node, type) {
+                    node = node || $(this);
+                    $('.jOrgChart .selected').removeClass('selected');
+                    node.addClass('selected');
+                }
+            });
+        </script>-->
+
+
         <!-- Include Required Prerequisites -->
         <script src="project_engineer/datepicker/moment.js"></script>
         <script type="text/javascript" src="project_engineer/datepicker/moment.min.js"></script>        
@@ -180,7 +201,7 @@
             ji:hover spann{
                 display:block;
             }
-        </style>
+        </style>            
     </head>
     <body style="background-color: white">
 
@@ -337,7 +358,6 @@
                     e.stopPropagation();
                 });
             });
-
     </script>    
 
     <!--<script src="project_engineer/treeview/shieldui-all.min.js"></script>-->
@@ -359,28 +379,48 @@
     </style>
 
 
+<!--    Dependency list org chart
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-36251023-1']);
+        _gaq.push(['_setDomainName', 'jqueryscript.net']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>-->
+
+
     <script src="project_engineer/jsp/modal/js/custombox.min.js"></script>
     <script src="project_engineer/jsp/modal/js/legacy.min.js"></script>    
     <script>
-            function loadlink() {
-                var uName = $('#sessionusername').val();
-                if (isNaN(uName === false) || (uName === "null")) {
-                    $.ajax({
-                        type: 'GET',
-                        url: "/ProjectStatusReportsSystem/rest/psrservices/logoutservices/logout",
-                        contentType: 'application/json',
-                        success: function (data, textStatus, jqXHR) {
-                            $('#sessionusername').val("");
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                        }
-                    });
-                    window.location.replace("index.jsp");
-                }
+        function loadlink() {
+            var uName = $('#sessionusername').val();
+            if (isNaN(uName === false) || (uName === "null")) {
+                $.ajax({
+                    type: 'GET',
+                    url: "/ProjectStatusReportsSystem/rest/psrservices/logoutservices/logout",
+                    contentType: 'application/json',
+                    success: function (data, textStatus, jqXHR) {
+                        $('#sessionusername').val("");
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                    }
+                });
+                window.location.replace("index.jsp");
             }
-            loadlink(); // This will run on page load
-            setInterval(function () {
-                loadlink() // this will run after every 5 seconds
-            }, 5000);
+        }
+        loadlink(); // This will run on page load
+        setInterval(function () {
+            loadlink() // this will run after every 5 seconds
+        }, 5000);
     </script>
 </html>

@@ -2054,29 +2054,35 @@ function Tree_View() {
                             if (AllStatesData.length !== 0) {
 
                                 var totalsocpe = data[0].createdprojectTotalscope;
+                                var OnAir = 0;
+                                var Not_HO = 0;
+                                var HO = 0;
+                                var Pending = 0;
                                 var WIP = 0;
                                 var TBS = 0;
                                 var Discussion = 0;
-                                var Not_HO = 0;
-                                var HO = 0;
-                                var OnAir = 0;
-                                var Pending = 0;
+
                                 var Agreement_Pending_TBS = 0;
                                 var Agreement_Pending_WIP = 0;
                                 var TX_Pending = 0;
                                 var Civil_Pending = 0;
                                 var Power_Pending = 0;
-                                var DAS = 0;
                                 var Design_Completed = 0;
                                 var Site_Owner_Approval_Pending = 0;
                                 var Stage_1 = 0;
                                 var Stage_2 = 0;
                                 var Stage_3 = 0;
+                                var DAS = 0;
+                                var Not_Started = 0;
+
                                 if (isNaN(StatusCount.OnAir) !== true) {
                                     OnAir = StatusCount.OnAir;
                                 }
                                 if (isNaN(StatusCount['Agreement Pending (WIP)']) !== true) {
                                     Agreement_Pending_WIP = StatusCount['Agreement Pending (WIP)'];
+                                }
+                                if (isNaN(StatusCount['Agreement Pending (TBS)']) !== true) {
+                                    Agreement_Pending_TBS = StatusCount['Agreement Pending (TBS)'];
                                 }
                                 if (isNaN(StatusCount['TX Pending']) !== true) {
                                     TX_Pending = StatusCount['TX Pending'];
@@ -2087,20 +2093,12 @@ function Tree_View() {
                                 if (isNaN(StatusCount['Power Pending']) !== true) {
                                     Power_Pending = StatusCount['Power Pending'];
                                 }
-                                if (isNaN(StatusCount.DAS) !== true) {
-                                    DAS = StatusCount.DAS;
-                                }
-                                WIP = (Agreement_Pending_WIP + TX_Pending + Civil_Pending + Power_Pending + DAS);
-                                if (isNaN(StatusCount['Agreement Pending (TBS)']) !== true) {
-                                    Agreement_Pending_TBS = StatusCount['Agreement Pending (TBS)'];
+                                if (isNaN(StatusCount['Design Completed']) !== true) {
+                                    Design_Completed = StatusCount['Design Completed'];
                                 }
                                 if (isNaN(StatusCount['Site Owner Approval Pending']) !== true) {
                                     Site_Owner_Approval_Pending = StatusCount['Site Owner Approval Pending'];
                                 }
-                                if (isNaN(StatusCount['Design Completed']) !== true) {
-                                    Design_Completed = StatusCount['Design Completed'];
-                                }
-                                TBS = (Agreement_Pending_TBS + Site_Owner_Approval_Pending + Design_Completed);
                                 if (isNaN(StatusCount['Stage 1']) !== true) {
                                     Stage_1 = StatusCount['Stage 1'];
                                 }
@@ -2110,29 +2108,47 @@ function Tree_View() {
                                 if (isNaN(StatusCount['Stage 3']) !== true) {
                                     Stage_3 = StatusCount['Stage 3'];
                                 }
+                                if (isNaN(StatusCount.DAS) !== true) {
+                                    DAS = StatusCount.DAS;
+                                }
+                                if (isNaN(StatusCount['Not Started']) !== true) {
+                                    Not_Started = StatusCount['Not Started'];
+                                }
+
+                                WIP = (Agreement_Pending_WIP + TX_Pending + Civil_Pending + Power_Pending + DAS);
+                                TBS = (Agreement_Pending_TBS + Site_Owner_Approval_Pending + Design_Completed);
                                 Discussion = (Stage_1 + Stage_2 + Stage_3);
                                 Pending = (WIP + TBS + Discussion);
                                 HO = (OnAir + Pending);
                                 Not_HO = (totalsocpe - HO);
+
                                 var projectName = "<b>" + data[0].createdprojectName + "</b><br>" + totalsocpe;
                                 var handover = "<b>Handed Over</b><br>" + HO;
                                 var nothandover = "<b>Not Handed Over</b><br>" + Not_HO;
                                 var on_air = "<b>On Air</b><br>" + OnAir;
                                 var pending = "<b>Pending</b><br>" + Pending;
+
                                 var wip_tot = "WIP<br>" + WIP;
                                 var tbs_tot = "TBS<br>" + TBS;
                                 var discussion_tot = "Discussion<br>" + Discussion;
+
                                 var agreementpending_wip = "Agreement Pending(WIP)<br>" + Agreement_Pending_WIP;
                                 var txpending = "TX Pending<br>" + TX_Pending;
                                 var civilpending = "Civil Pending<br>" + Civil_Pending;
                                 var powerpending = "Power Pending<br>" + Power_Pending;
                                 var das = "DAS<br>" + DAS;
+
                                 var agreementpending_tbs = "Agreement Pending(TBS)<br>" + Agreement_Pending_TBS;
                                 var designcompleted = "Design Completed<br>" + Design_Completed;
                                 var siteownerapprovedpending = "Site Owner Approval Pending<br>" + Site_Owner_Approval_Pending;
+
                                 var stg1 = "Stage 1<br>" + Stage_1;
                                 var stg2 = "Stage 2<br>" + Stage_2;
                                 var stg3 = "Stage 3<br>" + Stage_3;
+
+
+
+
                                 var treeDataIBS = [];
                                 treeDataIBS.push([projectName, '']);
                                 treeDataIBS.push([handover, projectName]);
@@ -2156,13 +2172,16 @@ function Tree_View() {
                                 treeDataIBS.push([agreementpending_tbs, tbs_tot]);
                                 treeDataIBS.push([designcompleted, agreementpending_tbs]);
                                 treeDataIBS.push([siteownerapprovedpending, designcompleted]);
-//                                console.log(projectName);
+                                console.log(projectName);
                                 var data = new google.visualization.DataTable();
                                 data.addColumn('string', 'Node');
                                 data.addColumn('string', 'Parent');
                                 data.addRows(treeDataIBS);
                                 var chart = new google.visualization.OrgChart(document.getElementById('chartViewDivtag'));
                                 chart.draw(data, {allowHtml: true});
+//                                var ll = "<div class='container'><ul id='tree-data' style='display:none'> <li id='root'> root <ul> <li id='node1'> node1 <ul> <li id='node3'> node3 </li> <li id='node18' class='last'> node18 <ul> <li id='node4'> node4 <ul type='vertical'> <li id='node12'> node12 </li> <li id='node12'> node12 </li> <li id='node12'> node12 </li> <li id='node12'> node12 </li> <li id='node15' class='last'> node15 </li> </ul> </li> <li id='node11'> node11 <ul type='vertical'> <li id='node12'> node12 </li> <li id='node12'> node12 </li> <li id='node15' class='last'> node15 </li> </ul> </li> <li id='node37' class='last'> node37 <ul type=''> <li id='node12'> node12 </li> <li id='node12'> node12 </li> <li id='node15 class='last'> node15 </li> </ul> </li> </ul> </li> </ul> </li> <li id='node28' class='last'> node28 </li> </ul> </li> <li id='node37' class='last'>node37</li></ul></div><div id='tree-view'></div>";
+//                                $('#chartViewDivtag').html(ll);
+
                             }
                             else {
                                 $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No Status Data .....</h2></div>");
@@ -2801,7 +2820,7 @@ function loadListOther(nameStatus) {
                         }
                     } else {
                         $('#datatable-buttons').html("<div style='padding:80px;padding-top:130px;'><h3 style='background-color:#ccffee;color:red;padding:30px;'>Fill Blank Cells in Excel Column to Display Table...</h3></div>");
-                    }                   
+                    }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     alert("Error Site_List");

@@ -33,6 +33,7 @@
             <ref bean="logoutservicesimpl"/>
             <ref bean="uploadfileservicesimpl"/>
             <ref bean="sendemailservicesimpl"/>
+            
         </jaxrs:serviceBeans>        
         <jaxrs:extensionMappings>
             <entry key="xml" value="application/xml" />
@@ -50,6 +51,7 @@
     <bean id="logoutservicesimpl" class="com.ongoingsolution.services.Impl.logoutservicesimpl"/>
     <bean id="uploadfileservicesimpl" class="com.ongoingsolution.services.Impl.uploadfileservicesimpl"/>
     <bean id="sendemailservicesimpl" class="com.ongoingsolution.services.Impl.sendemailservicesimpl"/>
+    
            
     <!--daoimpl-->
     <bean id="logindaoimpl" class="com.ongoingsolution.dao.Impl.logindaoimpl"/>  
@@ -57,7 +59,8 @@
     <bean id="getexceldatadaoimpl" class="com.ongoingsolution.dao.Impl.getexceldatadaoimpl"/>  
     <bean id="loadprojectdetailsdaoimpl" class="com.ongoingsolution.dao.Impl.loadprojectdetailsdaoimpl"/>  
     <bean id="issuesDaoimpl" class="com.ongoingsolution.dao.Impl.issuesDaoimpl"/>  
-    <bean id="riskDaoimpl" class="com.ongoingsolution.dao.Impl.riskDaoimpl"/>  
+    <bean id="riskDaoimpl" class="com.ongoingsolution.dao.Impl.riskDaoimpl"/> 
+    
     
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="host" value="smtp.gmail.com" />
