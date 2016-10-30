@@ -66,7 +66,7 @@
         </div>        
 
         <div class="col-sm-7">
-            <div class="col-sm-12" align="center" style="background-color: #d1e0e0;padding 0px;margin-bottom: 1px;color: blue;font-size: 18px;">
+            <div class="col-sm-12" align="center" style="background-color: #d1e0e0;padding: 0px;margin-bottom: 1px;color: blue;font-size: 18px;">
                 <div style="padding-left: 25%;margin: 0px">
                     Following figure shows project details of : <input type="text" id="projectname" disabled="true" style="background-color:#d1e0e0;border: 0px;width: 30%" />
                 </div>

@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta http-equiv="Cache-control" content="no-cache">
         <link rel="shortcut icon" href="login/css/images/mobitel.ico">
         <title>project_engineer template by Ongoing Solution</title>
 
@@ -66,7 +67,7 @@
         <script src="project_engineer/excel/js/ruleJS.js"></script>
         <script src="project_engineer/excel/js/handsontable.formula.js"></script>
         <script src="project_engineer/implementation/loadmodal.js"></script>
-        <script src="project_engineer/implementation/excelsheet.js"></script>
+        <script src="project_engineer/implementation/excelsheet.js?1500"></script>
         <style>
             .currentRow {
                 background-color: #1E90FF !important;
@@ -112,9 +113,9 @@
         <%@include file="project_engineer/jsp/modal/modaljsp/information.jsp" %>
     </body>       
 
-    <script src="project_engineer/implementation/smcpcreateproject.js"></script>
-    <script src="project_engineer/implementation/accncreateproject.js"></script>
-    <script src="project_engineer/implementation/trimplcreateproject.js"></script>
+    <script src="project_engineer/implementation/smcpcreateproject.js?1500"></script>
+    <script src="project_engineer/implementation/accncreateproject.js?1500"></script>
+    <script src="project_engineer/implementation/trimplcreateproject.js?1500"></script>
 
 
     <script src="project_engineer/jsp/modal/js/custombox.min.js"></script>

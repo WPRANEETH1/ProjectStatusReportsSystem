@@ -201,7 +201,8 @@ function accn() {
                         "RFI MW & Power Pending(WIP)", "Other Operator Approval Pending(WIP)", "Material Pending(WIP)", "RF Cabinet(WIP)", "DT(WIP)",
                         "Eq.not Ready", "Site not Ready", "SA Issues", "RFI MW Pending(CF)", "RFI Power Pending(CF)", "RFI MW & Power Pending(CF)",
                         "Other Operator Approval Pending(CF)", "Material Pending(CF)", "RF Cabinet(CF)", "DT(CF)",
-                        "Commissioned & blocked(CF)", "PAT Passed & blocked(CF)", "TX Pending(WIP)", "Civil Pending(CF)", "MW PAT Pending(WIP)", "Commission Pending(WIP)", "Other"]});
+                        "Commissioned & blocked(CF)", "PAT Passed & blocked(CF)", "TX Pending(WIP)", "Civil Pending(CF)", "MW PAT Pending(WIP)", "Commission Pending(WIP)", 
+                        "Commissioned blocked(WIP)", "Power Pending(WIP)", "Other"]});
         projectdatavalue["Status"] = "";
     }
     if ($('#accnDependency').is(":checked")) {

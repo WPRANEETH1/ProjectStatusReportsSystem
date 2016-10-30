@@ -422,11 +422,11 @@ $.fn.G2G3G4displaybarchart = function (projectName, OnAir_TargetValues_2G, Actua
                 crosshair: true
             }
         },
-        function (chart) {
-            //            chart.legend.allItems[0].update({name:'2G'});
-            //            chart.legend.allItems[1].update({name:'3G'});
-            //            chart.legend.allItems[2].update({name:'Total'});
-        });
+                function (chart) {
+                    //            chart.legend.allItems[0].update({name:'2G'});
+                    //            chart.legend.allItems[1].update({name:'3G'});
+                    //            chart.legend.allItems[2].update({name:'Total'});
+                });
     });
 };
 
@@ -636,11 +636,11 @@ $.fn.G2G3G4displaybarchartWeekly = function (projectName, OnAir_TargetValues_2G,
                 categories: categoriesObj
             }
         },
-        function (chart) {
-            //            chart.legend.allItems[0].update({name:'2G'});
-            //            chart.legend.allItems[1].update({name:'3G'});
-            //            chart.legend.allItems[2].update({name:'Total'});
-        });
+                function (chart) {
+                    //            chart.legend.allItems[0].update({name:'2G'});
+                    //            chart.legend.allItems[1].update({name:'3G'});
+                    //            chart.legend.allItems[2].update({name:'Total'});
+                });
     });
 };
 
@@ -1562,8 +1562,7 @@ function Piechart() {
                                         });
                                     });
                                 });
-                            }
-                            else {
+                            } else {
                                 $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No Status Data .....</h2></div>");
                             }
                         } else {
@@ -1713,8 +1712,7 @@ function Piechart() {
 
 
 
-                            }
-                            else {
+                            } else {
                                 $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No Status Data .....</h2></div>");
                             }
                         } else {
@@ -1816,8 +1814,7 @@ function Piechart() {
                                     });
                                 });
 
-                            }
-                            else {
+                            } else {
                                 $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No Status Data .....</h2></div>");
                             }
                         } else {
@@ -2014,8 +2011,7 @@ function Piechart() {
 
 
 
-                            }
-                            else {
+                            } else {
                                 $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No Status Data .....</h2></div>");
                             }
                         } else {
@@ -2182,8 +2178,7 @@ function Tree_View() {
 //                                var ll = "<div class='container'><ul id='tree-data' style='display:none'> <li id='root'> root <ul> <li id='node1'> node1 <ul> <li id='node3'> node3 </li> <li id='node18' class='last'> node18 <ul> <li id='node4'> node4 <ul type='vertical'> <li id='node12'> node12 </li> <li id='node12'> node12 </li> <li id='node12'> node12 </li> <li id='node12'> node12 </li> <li id='node15' class='last'> node15 </li> </ul> </li> <li id='node11'> node11 <ul type='vertical'> <li id='node12'> node12 </li> <li id='node12'> node12 </li> <li id='node15' class='last'> node15 </li> </ul> </li> <li id='node37' class='last'> node37 <ul type=''> <li id='node12'> node12 </li> <li id='node12'> node12 </li> <li id='node15 class='last'> node15 </li> </ul> </li> </ul> </li> </ul> </li> <li id='node28' class='last'> node28 </li> </ul> </li> <li id='node37' class='last'>node37</li></ul></div><div id='tree-view'></div>";
 //                                $('#chartViewDivtag').html(ll);
 
-                            }
-                            else {
+                            } else {
                                 $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No Status Data .....</h2></div>");
                             }
                         } else {
@@ -2323,8 +2318,7 @@ function Tree_View() {
 
 
 
-                            }
-                            else {
+                            } else {
                                 $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No Status Data .....</h2></div>");
                             }
                         } else {
@@ -2393,8 +2387,7 @@ function Tree_View() {
                                 data.addRows(treeDataIBS);
                                 var chart = new google.visualization.OrgChart(document.getElementById('chartViewDivtag'));
                                 chart.draw(data, {allowHtml: true});
-                            }
-                            else {
+                            } else {
                                 $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No Status Data .....</h2></div>");
                             }
                         } else {
@@ -2429,6 +2422,13 @@ function Tree_View() {
                                 var RF_Cabinet_WIP = 0;
                                 var DT_WIP = 0;
 
+                                var TX_Pending_WIP = 0;
+                                var MW_PAT_Pending_WIP = 0;
+                                var Commission_Pending_WIP = 0;
+                                var Commissioned_blocked_WIP = 0;
+                                var Power_Pending_WIP = 0;
+
+
                                 var Eq_not_ready = 0;
                                 var Site_Not_Ready = 0;
                                 var SA_Issues = 0;
@@ -2439,6 +2439,11 @@ function Tree_View() {
                                 var Material_Pending_CF = 0;
                                 var RF_Cabinet_CF = 0;
                                 var DT_CF = 0;
+
+                                var Commissioned_and_blocked_CF = 0;
+                                var PAT_Passed_and_blocked_CF = 0;
+                                var Civil_Pending_CF = 0;
+
                                 var other = 0;
 
                                 if (isNaN(StatusCount.OnAir) !== true) {
@@ -2453,8 +2458,8 @@ function Tree_View() {
                                 if (isNaN(StatusCount.MCW) !== true) {
                                     MCW = StatusCount.MCW;
                                 }
-                                if (isNaN(StatusCount["On Air Pendind"]) !== true) {
-                                    OnAir_Pending = StatusCount["On Air Pendind"];
+                                if (isNaN(StatusCount["On Air Pending"]) !== true) {
+                                    OnAir_Pending = StatusCount["On Air Pending"];
                                 }
                                 if (isNaN(StatusCount["RFI Pending"]) !== true) {
                                     RFI_Pending = StatusCount["RFI Pending"];
@@ -2480,6 +2485,24 @@ function Tree_View() {
                                 if (isNaN(StatusCount["DT(WIP)"]) !== true) {
                                     DT_WIP = StatusCount["DT(WIP)"];
                                 }
+
+//                                ***new dded
+                                if (isNaN(StatusCount["TX Pending(WIP)"]) !== true) {
+                                    TX_Pending_WIP = StatusCount["TX Pending(WIP)"];
+                                }
+                                if (isNaN(StatusCount["MW PAT Pending(WIP)"]) !== true) {
+                                    MW_PAT_Pending_WIP = StatusCount["MW PAT Pending(WIP)"];
+                                }
+                                if (isNaN(StatusCount["Commission Pending(WIP)"]) !== true) {
+                                    Commission_Pending_WIP = StatusCount["Commission Pending(WIP)"];
+                                }
+                                if (isNaN(StatusCount["Commissioned blocked(WIP)"]) !== true) {
+                                    Commissioned_blocked_WIP = StatusCount["Commissioned blocked(WIP)"];
+                                }
+                                if (isNaN(StatusCount["Power Pending(WIP)"]) !== true) {
+                                    Power_Pending_WIP = StatusCount["Power Pending(WIP)"];
+                                }
+
                                 if (isNaN(StatusCount["Eq.not Ready"]) !== true) {
                                     Eq_not_ready = StatusCount["Eq.not Ready"];
                                 }
@@ -2511,6 +2534,18 @@ function Tree_View() {
                                 if (isNaN(StatusCount["DT(CF)"]) !== true) {
                                     DT_CF = StatusCount["DT(CF)"];
                                 }
+
+//                                ***new added
+                                if (isNaN(StatusCount["Commissioned & blocked(CF)"]) !== true) {
+                                    Commissioned_and_blocked_CF = StatusCount["Commissioned & blocked(CF)"];
+                                }
+                                if (isNaN(StatusCount["PAT Passed & blocked(CF)"]) !== true) {
+                                    PAT_Passed_and_blocked_CF = StatusCount["PAT Passed & blocked(CF)"];
+                                }
+                                if (isNaN(StatusCount["Civil Pending(CF)"]) !== true) {
+                                    Civil_Pending_CF = StatusCount["Civil Pending(CF)"];
+                                }
+
                                 if (isNaN(StatusCount["Other"]) !== true) {
                                     other = StatusCount["Other"];
                                 }
@@ -2521,8 +2556,8 @@ function Tree_View() {
                                 var Not_HO = 0;
                                 var HO = 0;
 
-                                WIP = (TE_WIP + Tower_WIP + MCW + OnAir_Pending + RFI_Pending + RFI_MW_Pending_WIP + RFI_Power_Pending_WIP + RFI_MW_and_Power_Pending_WIP + Other_Operator_Approval_Pending_WIP + Material_Pending_WIP + RF_Cabinet_WIP + DT_WIP);
-                                Cant_forcact = (Eq_not_ready + Site_Not_Ready + SA_Issues + RFI_MW_Pending_CF + RFI_Power_Pending_CF + RFI_MW_and_Power_Pending_CF + Other_Operator_Approval_Pending_CF + Material_Pending_CF + RF_Cabinet_CF + DT_CF);
+                                WIP = (TE_WIP + Tower_WIP + MCW + OnAir_Pending + RFI_Pending + RFI_MW_Pending_WIP + RFI_Power_Pending_WIP + RFI_MW_and_Power_Pending_WIP + Other_Operator_Approval_Pending_WIP + Material_Pending_WIP + RF_Cabinet_WIP + DT_WIP + TX_Pending_WIP + MW_PAT_Pending_WIP + Commission_Pending_WIP + Commissioned_blocked_WIP + Power_Pending_WIP);
+                                Cant_forcact = (Eq_not_ready + Site_Not_Ready + SA_Issues + RFI_MW_Pending_CF + RFI_Power_Pending_CF + RFI_MW_and_Power_Pending_CF + Other_Operator_Approval_Pending_CF + Material_Pending_CF + RF_Cabinet_CF + DT_CF + Commissioned_and_blocked_CF + PAT_Passed_and_blocked_CF + Civil_Pending_CF);
                                 Prnding = (WIP + Cant_forcact + other);
                                 HO = (OnAir + Prnding);
                                 Not_HO = (totalsocpe - HO);
@@ -2548,6 +2583,12 @@ function Tree_View() {
                                 var Material_Pending_WIPTree = "Material Pending (WIP)<br>" + Material_Pending_WIP;
                                 var RF_Cabinet_WIPTree = "RF Cabinet (WIP)<br>" + RF_Cabinet_WIP;
                                 var DT_WIPTree = "DT (WIP)<br>" + DT_WIP;
+//                                new added
+                                var TX_Pending_WIPTree = "TX Pending(WIP)<br>" + TX_Pending_WIP;
+                                var MW_PAT_Pending_WIPTree = "MW PAT Pending(WIP)<br>" + MW_PAT_Pending_WIP;
+                                var Commission_Pending_WIPTree = "Commission Pending(WIP)<br>" + Commission_Pending_WIP;
+                                var Commissioned_blocked_WIPTree = "Commissioned blocked(WIP)<br>" + Commissioned_blocked_WIP;
+                                var Power_Pending_WIPTree = "Power Pending(WIP)<br>" + Power_Pending_WIP;
 
                                 var Eq_not_readyTree = "Eq. Not Ready<br>" + Eq_not_ready;
                                 var Site_Not_ReadyTree = "Site Not Ready<br>" + Site_Not_Ready;
@@ -2559,6 +2600,12 @@ function Tree_View() {
                                 var Material_Pending_CFTree = "Material Pending (Can't Forcast)<br>" + Material_Pending_CF;
                                 var RF_Cabinet_CFTree = "RF Cabinet (Can't Forcast)<br>" + RF_Cabinet_CF;
                                 var DT_CFTree = "DT (Can't Forcast)<br>" + DT_CF;
+
+//                                new added
+                                var Commissioned_and_blocked_CFTree = "Commissioned & blocked(CF)<br>" + Commissioned_and_blocked_CF;
+                                var PAT_Passed_and_blocked_CFTree = "PAT Passed & blocked(CF)<br>" + PAT_Passed_and_blocked_CF;
+                                var Civil_Pending_CFTree = "Civil Pending(CF)<br>" + Civil_Pending_CF;
+
 
                                 var treeDataIBS = [];
                                 treeDataIBS.push([projectName, '']);
@@ -2586,18 +2633,30 @@ function Tree_View() {
                                 treeDataIBS.push([RF_Cabinet_WIPTree, Material_Pending_WIPTree]);
                                 treeDataIBS.push([DT_WIPTree, RF_Cabinet_WIPTree]);
 
+//                                new added
+                                treeDataIBS.push([TX_Pending_WIPTree, WIPTree]);
+                                treeDataIBS.push([MW_PAT_Pending_WIPTree, TX_Pending_WIPTree]);
+                                treeDataIBS.push([Commission_Pending_WIPTree, MW_PAT_Pending_WIPTree]);
+                                treeDataIBS.push([Commissioned_blocked_WIPTree, Commission_Pending_WIPTree]);
+                                treeDataIBS.push([Power_Pending_WIPTree, Commissioned_blocked_WIPTree]);
+
                                 treeDataIBS.push([Eq_not_readyTree, cannotForcastTree]);
                                 treeDataIBS.push([RFI_MW_Pending_CFTree, Eq_not_readyTree]);
                                 treeDataIBS.push([RFI_Power_Pending_CFTree, RFI_MW_Pending_CFTree]);
-                                treeDataIBS.push([SA_IssuesTree, RFI_Power_Pending_CFTree]);
-                                treeDataIBS.push([Material_Pending_CFTree, SA_IssuesTree]);
 
                                 treeDataIBS.push([Site_Not_ReadyTree, cannotForcastTree]);
                                 treeDataIBS.push([RFI_MW_and_Power_Pending_CFTree, Site_Not_ReadyTree]);
                                 treeDataIBS.push([Other_Operator_Approval_Pending_CFTree, RFI_MW_and_Power_Pending_CFTree]);
-                                treeDataIBS.push([RF_Cabinet_CFTree, Other_Operator_Approval_Pending_CFTree]);
-                                treeDataIBS.push([DT_CFTree, RF_Cabinet_CFTree]);
 
+//                                new added
+                                treeDataIBS.push([Commissioned_and_blocked_CFTree, cannotForcastTree]);
+                                treeDataIBS.push([PAT_Passed_and_blocked_CFTree, Commissioned_and_blocked_CFTree]);
+                                treeDataIBS.push([Civil_Pending_CFTree, PAT_Passed_and_blocked_CFTree]);
+
+                                treeDataIBS.push([Material_Pending_CFTree, cannotForcastTree]);
+                                treeDataIBS.push([DT_CFTree, Material_Pending_CFTree]);
+                                treeDataIBS.push([SA_IssuesTree, DT_CFTree]);
+                                treeDataIBS.push([RF_Cabinet_CFTree, SA_IssuesTree]);
 
                                 var data = new google.visualization.DataTable();
                                 data.addColumn('string', 'Node');
@@ -2608,8 +2667,7 @@ function Tree_View() {
 
 
 
-                            }
-                            else {
+                            } else {
                                 $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No Status Data .....</h2></div>");
                             }
                         } else {
@@ -3544,8 +3602,7 @@ function getSearchDateMonthly() {
                                 } else {
                                     $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No OnAir Data .....</h2></div>");
                                 }
-                            }
-                            else {
+                            } else {
                                 $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No Status Data .....</h2></div>");
                             }
                         } else {
@@ -4068,8 +4125,7 @@ function getSearchDateMonthly() {
 
 
 
-                            }
-                            else {
+                            } else {
                                 $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No Status Data .....</h2></div>");
                             }
                         } else {
@@ -4491,8 +4547,7 @@ function getSearchDateMonthly() {
                                 } else {
                                     $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No OnAir Data .....</h2></div>");
                                 }
-                            }
-                            else {
+                            } else {
                                 $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No Status Data .....</h2></div>");
                             }
                         } else {
@@ -4942,11 +4997,11 @@ function getSearchDateMonthly() {
                                                         crosshair: true
                                                     }
                                                 },
-                                                function (chart) {
-                                                    //            chart.legend.allItems[0].update({name:'2G'});
-                                                    //            chart.legend.allItems[1].update({name:'3G'});
-                                                    //            chart.legend.allItems[2].update({name:'Total'});
-                                                });
+                                                        function (chart) {
+                                                            //            chart.legend.allItems[0].update({name:'2G'});
+                                                            //            chart.legend.allItems[1].update({name:'3G'});
+                                                            //            chart.legend.allItems[2].update({name:'Total'});
+                                                        });
                                             });
                                         }
                                         if ((Pstart < FO) && ((FO < Pend) && (Pend <= FEnd))) {//4444444444444444444444444
@@ -5343,11 +5398,11 @@ function getSearchDateMonthly() {
                                                         crosshair: true
                                                     }
                                                 },
-                                                function (chart) {
-                                                    //            chart.legend.allItems[0].update({name:'2G'});
-                                                    //            chart.legend.allItems[1].update({name:'3G'});
-                                                    //            chart.legend.allItems[2].update({name:'Total'});
-                                                });
+                                                        function (chart) {
+                                                            //            chart.legend.allItems[0].update({name:'2G'});
+                                                            //            chart.legend.allItems[1].update({name:'3G'});
+                                                            //            chart.legend.allItems[2].update({name:'Total'});
+                                                        });
                                             });
                                         }
                                         if ((Pstart >= FO) && (Pend <= FEnd)) {//55555555555555555555
@@ -5776,11 +5831,11 @@ function getSearchDateMonthly() {
                                                         crosshair: true
                                                     }
                                                 },
-                                                function (chart) {
-                                                    //            chart.legend.allItems[0].update({name:'2G'});
-                                                    //            chart.legend.allItems[1].update({name:'3G'});
-                                                    //            chart.legend.allItems[2].update({name:'Total'});
-                                                });
+                                                        function (chart) {
+                                                            //            chart.legend.allItems[0].update({name:'2G'});
+                                                            //            chart.legend.allItems[1].update({name:'3G'});
+                                                            //            chart.legend.allItems[2].update({name:'Total'});
+                                                        });
                                             });
                                         }
                                         if (((FO <= Pstart) && (Pstart < FEnd)) && (Pend > FEnd)) { //666666666666666666666666666666666666666
@@ -6208,24 +6263,21 @@ function getSearchDateMonthly() {
                                                         crosshair: true
                                                     }
                                                 },
-                                                function (chart) {
-                                                    //            chart.legend.allItems[0].update({name:'2G'});
-                                                    //            chart.legend.allItems[1].update({name:'3G'});
-                                                    //            chart.legend.allItems[2].update({name:'Total'});
-                                                });
+                                                        function (chart) {
+                                                            //            chart.legend.allItems[0].update({name:'2G'});
+                                                            //            chart.legend.allItems[1].update({name:'3G'});
+                                                            //            chart.legend.allItems[2].update({name:'Total'});
+                                                        });
                                             });
                                         }
 
-                                    }
-                                    else {
+                                    } else {
                                         $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>Not fill target date or onair actual date.. .....</h2></div>");
                                     }
-                                }
-                                else {
+                                } else {
                                     $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>Not fill target date or onair actual date.. .....</h2></div>");
                                 }
-                            }
-                            else {
+                            } else {
                                 $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No Status Data .....</h2></div>");
                             }
                         } else {
@@ -7451,8 +7503,7 @@ function getSearchDateWeekly() {
                                 } else {
                                     $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No OnAir Data .....</h2></div>");
                                 }
-                            }
-                            else {
+                            } else {
                                 $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No Status Data .....</h2></div>");
                             }
                         } else {
@@ -8054,8 +8105,7 @@ function getSearchDateWeekly() {
                                 } else {
                                     $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No OnAir Data .....</h2></div>");
                                 }
-                            }
-                            else {
+                            } else {
                                 $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No Status Data .....</h2></div>");
                             }
                         } else {
@@ -8569,8 +8619,7 @@ function getSearchDateWeekly() {
 
 
 
-                            }
-                            else {
+                            } else {
                                 $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No Status Data .....</h2></div>");
                             }
                         } else {
@@ -9068,11 +9117,11 @@ function getSearchDateWeekly() {
                                                         categories: categoriesObj
                                                     }
                                                 },
-                                                function (chart) {
-                                                    //            chart.legend.allItems[0].update({name:'2G'});
-                                                    //            chart.legend.allItems[1].update({name:'3G'});
-                                                    //            chart.legend.allItems[2].update({name:'Total'});
-                                                });
+                                                        function (chart) {
+                                                            //            chart.legend.allItems[0].update({name:'2G'});
+                                                            //            chart.legend.allItems[1].update({name:'3G'});
+                                                            //            chart.legend.allItems[2].update({name:'Total'});
+                                                        });
                                             });
                                             //***************
                                         }
@@ -9487,11 +9536,11 @@ function getSearchDateWeekly() {
                                                         categories: categoriesObj
                                                     }
                                                 },
-                                                function (chart) {
-                                                    //            chart.legend.allItems[0].update({name:'2G'});
-                                                    //            chart.legend.allItems[1].update({name:'3G'});
-                                                    //            chart.legend.allItems[2].update({name:'Total'});
-                                                });
+                                                        function (chart) {
+                                                            //            chart.legend.allItems[0].update({name:'2G'});
+                                                            //            chart.legend.allItems[1].update({name:'3G'});
+                                                            //            chart.legend.allItems[2].update({name:'Total'});
+                                                        });
                                             });
 
                                         }
@@ -9907,11 +9956,11 @@ function getSearchDateWeekly() {
                                                         categories: categoriesObj
                                                     }
                                                 },
-                                                function (chart) {
-                                                    //            chart.legend.allItems[0].update({name:'2G'});
-                                                    //            chart.legend.allItems[1].update({name:'3G'});
-                                                    //            chart.legend.allItems[2].update({name:'Total'});
-                                                });
+                                                        function (chart) {
+                                                            //            chart.legend.allItems[0].update({name:'2G'});
+                                                            //            chart.legend.allItems[1].update({name:'3G'});
+                                                            //            chart.legend.allItems[2].update({name:'Total'});
+                                                        });
                                             });
 
                                         }
@@ -10327,25 +10376,22 @@ function getSearchDateWeekly() {
                                                         categories: categoriesObj
                                                     }
                                                 },
-                                                function (chart) {
-                                                    //            chart.legend.allItems[0].update({name:'2G'});
-                                                    //            chart.legend.allItems[1].update({name:'3G'});
-                                                    //            chart.legend.allItems[2].update({name:'Total'});
-                                                });
+                                                        function (chart) {
+                                                            //            chart.legend.allItems[0].update({name:'2G'});
+                                                            //            chart.legend.allItems[1].update({name:'3G'});
+                                                            //            chart.legend.allItems[2].update({name:'Total'});
+                                                        });
                                             });
 
                                         }
 
-                                    }
-                                    else {
+                                    } else {
                                         $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No Status Data .....</h2></div>");
                                     }
-                                }
-                                else {
+                                } else {
                                     $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No Status Data .....</h2></div>");
                                 }
-                            }
-                            else {
+                            } else {
                                 $('#chartViewDivtag').html("<div style='padding:150px'><h2 style='color:red'>No Status Data .....</h2></div>");
                             }
                         } else {

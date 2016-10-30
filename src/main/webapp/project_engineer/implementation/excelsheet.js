@@ -63,7 +63,7 @@ function viewexcelsheet(exceldata) {
             rowHeaders: true,
             colHeaders: true,
             fixedRowsTop: 2,
-            fixedColumnsLeft: 2,
+            fixedColumnsLeft: 5,
             manualColumnResize: true,
             manualRowResize: true,
             manualColumnMove: true,

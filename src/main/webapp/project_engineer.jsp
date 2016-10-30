@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta http-equiv="Cache-control" content="no-cache">
         <link rel="shortcut icon" href="login/css/images/mobitel.ico">
         <title>project_engineer template by Ongoing Solution</title>
 
@@ -299,15 +300,15 @@
                 }
             });
     </script>
-    <script src="project_engineer/implementation/loadmodal.js"></script>
-    <script src="project_engineer/implementation/smcpcreateproject.js"></script>
-    <script src="project_engineer/implementation/accncreateproject.js"></script>
-    <script src="project_engineer/implementation/trimplcreateproject.js"></script>
+    <script src="project_engineer/implementation/loadmodal.js?1500"></script>
+    <script src="project_engineer/implementation/smcpcreateproject.js?1500"></script>
+    <script src="project_engineer/implementation/accncreateproject.js?1500"></script>
+    <script src="project_engineer/implementation/trimplcreateproject.js?1500"></script>
 
     <script src="project_engineer/implementation/date.js"></script>
     <script src="project_engineer/implementation/jsonQ.js"></script>    
-    <script src="project_engineer/implementation/engineerfunction.js"></script> 
-    <script src="project_engineer/implementation/projectImplementation.js"></script>
+    <script src="project_engineer/implementation/engineerfunction.js?1500"></script> 
+    <script src="project_engineer/implementation/projectImplementation.js?1500"></script>
 
     <style>
         label {

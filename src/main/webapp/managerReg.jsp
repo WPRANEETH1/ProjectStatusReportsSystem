@@ -7,7 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-    <head>		
+    <head>	
+        <meta http-equiv="Cache-control" content="no-cache">
         <link rel="shortcut icon" href="login/css/images/mobitel.ico">
         <title>Login Page</title>
         <!-- bootstrap & fontawesome -->

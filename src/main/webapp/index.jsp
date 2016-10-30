@@ -7,7 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-    <head>		
+    <head>	
+        <meta http-equiv="Cache-control" content="no-cache">
         <link rel="shortcut icon" href="login/css/images/mobitel.ico">
         <title>Login Page</title>
         <!-- bootstrap & fontawesome -->
@@ -88,7 +89,7 @@
                                                             <span class="lbl"> Remember Me</span>
                                                         </label>
 
-                                                        <button type="button" class="width-35 pull-right btn btn-sm btn-primary" onclick="loadLoginValidation();">
+                                                        <button type="button" id="" class="width-35 pull-right btn btn-sm btn-primary" onclick="loadLoginValidation();">                                                            
                                                             <i class="ace-icon fa fa-key"></i>
                                                             <span class="bigger-110">Login</span>
                                                         </button>

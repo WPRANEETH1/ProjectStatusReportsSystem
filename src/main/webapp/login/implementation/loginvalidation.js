@@ -152,7 +152,7 @@ function createdEngaccount() {
                                 $('#backlogin').trigger('click');
                                 $.notify({
                                     icon: 'glyphicon glyphicon-star',
-                                    message: "Your account has been successfully created. Please check your email for the instructions on how to conform your account!."                                    
+                                    message: "Your account has been successfully created. Please check your email for the instructions on how to conform your account!."
                                 }, {
                                     delay: 8000
                                 });
@@ -237,7 +237,7 @@ function Retrieveemailfunction() {
                     $('#Retrieveemail').val("");
                     $.notify({
                         icon: 'glyphicon glyphicon-star',
-                        message: "Your request has been successfully received. Please check your email for view the information!."                        
+                        message: "Your request has been successfully received. Please check your email for view the information!."
                     }, {
                         delay: 8000
                     });
@@ -262,3 +262,17 @@ var validateEmail = function (elementValue) {
     var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailPattern.test(elementValue);
 };
+
+var userName = document.getElementById("userName");
+userName.addEventListener("keydown", function (e) {
+    if (e.keyCode === 13) {
+        loadLoginValidation();
+    }
+});
+
+var passWord = document.getElementById("passWord");
+passWord.addEventListener("keydown", function (e) {
+    if (e.keyCode === 13) {
+        loadLoginValidation();
+    }
+});
