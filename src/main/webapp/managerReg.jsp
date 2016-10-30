@@ -301,7 +301,7 @@
             if ('ontouchstart' in document.documentElement)
                 document.write("<script src='login/components/_mod/jquery.mobile.custom/jquery.mobile.custom.min.js'>" + "<" + "/script>");
         </script>
-        <script src="login/implementation/manager_loginvalidation.js"></script>
+        <script src="login/implementation/manager_loginvalidation.js?1500"></script>
         <!-- inline scripts related to this page -->
         <script type="text/javascript">
             jQuery(function ($) {

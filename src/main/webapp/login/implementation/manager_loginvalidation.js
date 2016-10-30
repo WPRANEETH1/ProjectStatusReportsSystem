@@ -261,3 +261,17 @@ var validateEmail = function (elementValue) {
     var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailPattern.test(elementValue);
 };
+
+var userName = document.getElementById("userName");
+userName.addEventListener("keydown", function (e) {
+    if (e.keyCode === 13) {
+        loadLoginValidation();
+    }
+});
+
+var passWord = document.getElementById("passWord");
+passWord.addEventListener("keydown", function (e) {
+    if (e.keyCode === 13) {
+        loadLoginValidation();
+    }
+});
