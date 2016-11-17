@@ -1461,6 +1461,8 @@ function Piechart() {
                                 var Stage_1 = 0;
                                 var Stage_2 = 0;
                                 var Stage_3 = 0;
+                                var Not_Started = 0;
+
                                 if (isNaN(StatusCount.OnAir) !== true) {
                                     OnAir = StatusCount.OnAir;
                                 }
@@ -1490,6 +1492,7 @@ function Piechart() {
                                     Design_Completed = StatusCount['Design Completed'];
                                 }
                                 TBS = (Agreement_Pending_TBS + Site_Owner_Approval_Pending + Design_Completed);
+
                                 if (isNaN(StatusCount['Stage 1']) !== true) {
                                     Stage_1 = StatusCount['Stage 1'];
                                 }
@@ -1499,8 +1502,13 @@ function Piechart() {
                                 if (isNaN(StatusCount['Stage 3']) !== true) {
                                     Stage_3 = StatusCount['Stage 3'];
                                 }
+                                if (isNaN(StatusCount['Not Started']) !== true) {
+                                    Not_Started = StatusCount['Not Started'];
+                                }
+
                                 Discussion = (Stage_1 + Stage_2 + Stage_3);
-                                Not_HO = (totalsocpe - (WIP + TBS + Discussion + OnAir));
+                                Not_HO = (totalsocpe - (WIP + TBS + Discussion + OnAir + Not_Started));
+
                                 var datapie = [];
                                 if (WIP !== 0) {
                                     var wip = {name: 'WIP', y: ((WIP * 100) / totalsocpe), color: '#FF7F50'};
@@ -1509,6 +1517,10 @@ function Piechart() {
                                 if (TBS !== 0) {
                                     var tbs = {name: 'TBS', y: ((TBS * 100) / totalsocpe), color: '#5c5c61'};
                                     datapie.push(tbs);
+                                }
+                                if (Not_Started !== 0) {
+                                    var notstarted = {name: 'TBS', y: ((Not_Started * 100) / totalsocpe), color: '#5c5c61'};
+                                    datapie.push(notstarted);
                                 }
                                 if (Discussion !== 0) {
                                     var discussion = {name: 'Discussion', y: (Discussion * 100) / totalsocpe, color: '#65FF65'};
@@ -1849,6 +1861,12 @@ function Piechart() {
                                 var RF_Cabinet_WIP = 0;
                                 var DT_WIP = 0;
 
+                                var TX_Pending_WIP = 0;
+                                var MW_PAT_Pending_WIP = 0;
+                                var Commission_Pending_WIP = 0;
+                                var Commissioned_blocked_WIP = 0;
+                                var Power_Pending_WIP = 0;
+
                                 var Eq_not_ready = 0;
                                 var Site_Not_Ready = 0;
                                 var SA_Issues = 0;
@@ -1859,6 +1877,11 @@ function Piechart() {
                                 var Material_Pending_CF = 0;
                                 var RF_Cabinet_CF = 0;
                                 var DT_CF = 0;
+
+                                var Commissioned_and_blocked_CF = 0;
+                                var PAT_Passed_and_blocked_CF = 0;
+                                var Civil_Pending_CF = 0;
+
                                 var other = 0;
 
                                 if (isNaN(StatusCount.OnAir) !== true) {
@@ -1900,6 +1923,24 @@ function Piechart() {
                                 if (isNaN(StatusCount["DT(WIP)"]) !== true) {
                                     DT_WIP = StatusCount["DT(WIP)"];
                                 }
+
+//                                ***new dded
+                                if (isNaN(StatusCount["TX Pending(WIP)"]) !== true) {
+                                    TX_Pending_WIP = StatusCount["TX Pending(WIP)"];
+                                }
+                                if (isNaN(StatusCount["MW PAT Pending(WIP)"]) !== true) {
+                                    MW_PAT_Pending_WIP = StatusCount["MW PAT Pending(WIP)"];
+                                }
+                                if (isNaN(StatusCount["Commission Pending(WIP)"]) !== true) {
+                                    Commission_Pending_WIP = StatusCount["Commission Pending(WIP)"];
+                                }
+                                if (isNaN(StatusCount["Commissioned blocked(WIP)"]) !== true) {
+                                    Commissioned_blocked_WIP = StatusCount["Commissioned blocked(WIP)"];
+                                }
+                                if (isNaN(StatusCount["Power Pending(WIP)"]) !== true) {
+                                    Power_Pending_WIP = StatusCount["Power Pending(WIP)"];
+                                }
+
                                 if (isNaN(StatusCount["Eq.not Ready"]) !== true) {
                                     Eq_not_ready = StatusCount["Eq.not Ready"];
                                 }
@@ -1931,6 +1972,18 @@ function Piechart() {
                                 if (isNaN(StatusCount["DT(CF)"]) !== true) {
                                     DT_CF = StatusCount["DT(CF)"];
                                 }
+
+//                                ***new added
+                                if (isNaN(StatusCount["Commissioned & blocked(CF)"]) !== true) {
+                                    Commissioned_and_blocked_CF = StatusCount["Commissioned & blocked(CF)"];
+                                }
+                                if (isNaN(StatusCount["PAT Passed & blocked(CF)"]) !== true) {
+                                    PAT_Passed_and_blocked_CF = StatusCount["PAT Passed & blocked(CF)"];
+                                }
+                                if (isNaN(StatusCount["Civil Pending(CF)"]) !== true) {
+                                    Civil_Pending_CF = StatusCount["Civil Pending(CF)"];
+                                }
+
                                 if (isNaN(StatusCount["Other"]) !== true) {
                                     other = StatusCount["Other"];
                                 }
@@ -1941,8 +1994,8 @@ function Piechart() {
                                 var Not_HO = 0;
                                 var HO = 0;
 
-                                WIP = (TE_WIP + Tower_WIP + MCW + OnAir_Pending + RFI_Pending + RFI_MW_Pending_WIP + RFI_Power_Pending_WIP + RFI_MW_and_Power_Pending_WIP + Other_Operator_Approval_Pending_WIP + Material_Pending_WIP + RF_Cabinet_WIP + DT_WIP);
-                                Cant_forcact = (Eq_not_ready + Site_Not_Ready + SA_Issues + RFI_MW_Pending_CF + RFI_Power_Pending_CF + RFI_MW_and_Power_Pending_CF + Other_Operator_Approval_Pending_CF + Material_Pending_CF + RF_Cabinet_CF + DT_CF);
+                                WIP = (TE_WIP + Tower_WIP + MCW + OnAir_Pending + RFI_Pending + RFI_MW_Pending_WIP + RFI_Power_Pending_WIP + RFI_MW_and_Power_Pending_WIP + Other_Operator_Approval_Pending_WIP + Material_Pending_WIP + RF_Cabinet_WIP + DT_WIP + TX_Pending_WIP + MW_PAT_Pending_WIP + Commission_Pending_WIP + Commissioned_blocked_WIP + Power_Pending_WIP);
+                                Cant_forcact = (Eq_not_ready + Site_Not_Ready + SA_Issues + RFI_MW_Pending_CF + RFI_Power_Pending_CF + RFI_MW_and_Power_Pending_CF + Other_Operator_Approval_Pending_CF + Material_Pending_CF + RF_Cabinet_CF + DT_CF + Commissioned_and_blocked_CF + PAT_Passed_and_blocked_CF + Civil_Pending_CF);
                                 Prnding = (WIP + Cant_forcact);
                                 HO = (OnAir + Prnding + other);
                                 Not_HO = (totalsocpe - HO);
@@ -2114,7 +2167,7 @@ function Tree_View() {
                                 WIP = (Agreement_Pending_WIP + TX_Pending + Civil_Pending + Power_Pending + DAS);
                                 TBS = (Agreement_Pending_TBS + Site_Owner_Approval_Pending + Design_Completed);
                                 Discussion = (Stage_1 + Stage_2 + Stage_3);
-                                Pending = (WIP + TBS + Discussion);
+                                Pending = (WIP + TBS + Discussion + Not_Started);
                                 HO = (OnAir + Pending);
                                 Not_HO = (totalsocpe - HO);
 
@@ -2142,6 +2195,8 @@ function Tree_View() {
                                 var stg2 = "Stage 2<br>" + Stage_2;
                                 var stg3 = "Stage 3<br>" + Stage_3;
 
+                                var Not_StartedTree = "Not Started <br>" + Not_Started;
+
 
 
 
@@ -2151,9 +2206,11 @@ function Tree_View() {
                                 treeDataIBS.push([nothandover, projectName]);
                                 treeDataIBS.push([on_air, handover]);
                                 treeDataIBS.push([pending, handover]);
+
                                 treeDataIBS.push([wip_tot, pending]);
                                 treeDataIBS.push([tbs_tot, pending]);
                                 treeDataIBS.push([discussion_tot, pending]);
+                                treeDataIBS.push([Not_StartedTree, pending]);
 
                                 treeDataIBS.push([agreementpending_wip, wip_tot]);
                                 treeDataIBS.push([txpending, agreementpending_wip]);

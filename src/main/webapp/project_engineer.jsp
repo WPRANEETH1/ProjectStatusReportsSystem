@@ -206,7 +206,7 @@
     </head>
     <body style="background-color: white">
 
-        <%@include file="project_engineer/jsp/header.jsp" %>
+        <%@include file="project_engineer/jsp/header_dashboard.jsp" %>
         <%@include file="project_engineer/jsp/content.jsp" %>        
         <%@include file="project_engineer/jsp/modal/modaljsp/openproject.jsp" %>
         <%@include file="project_engineer/jsp/modal/modaljsp/profile.jsp" %>
