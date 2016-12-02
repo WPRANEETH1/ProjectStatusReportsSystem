@@ -50,19 +50,19 @@ public class loadprojectdetailsservicesimpl implements loadprojectdetailsservice
         obj.put("smcp", smcp);
         obj.put("accn", accn);
 
-        obj.put("ibsdata", ibsdata);
-        obj.put("wifidata", wifidata);
-
-        obj.put("Buffer_Stock_Huawei", Buffer_Stock_Huawei);
-        obj.put("Buffer_Stock_ZTE", Buffer_Stock_ZTE);
-        obj.put("Stage_VII", Stage_VII);
-        obj.put("Ericsson_DBC", Ericsson_DBC);
-        obj.put("th_Sector_Installation", th_Sector_Installation);
-        obj.put("Small_Cell_Implementation", Small_Cell_Implementation);
-        obj.put("Huawei_P1", Huawei_P1);
-        obj.put("Huawei_P2", Huawei_P2);
-        obj.put("ZTE_P1", ZTE_P1);
-        obj.put("ZTE_P2", ZTE_P2);
+//        obj.put("ibsdata", ibsdata);
+//        obj.put("wifidata", wifidata);
+//
+//        obj.put("Buffer_Stock_Huawei", Buffer_Stock_Huawei);
+//        obj.put("Buffer_Stock_ZTE", Buffer_Stock_ZTE);
+//        obj.put("Stage_VII", Stage_VII);
+//        obj.put("Ericsson_DBC", Ericsson_DBC);
+//        obj.put("th_Sector_Installation", th_Sector_Installation);
+//        obj.put("Small_Cell_Implementation", Small_Cell_Implementation);
+//        obj.put("Huawei_P1", Huawei_P1);
+//        obj.put("Huawei_P2", Huawei_P2);
+//        obj.put("ZTE_P1", ZTE_P1);
+//        obj.put("ZTE_P2", ZTE_P2);
 
         obj.put("Transmission_Implementation", Transmission_Implementation);
         return Response.ok(obj).build();
