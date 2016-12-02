@@ -16,6 +16,8 @@ function loadEngineerFunction() {
         url: rootURL + "/getProjectNameWithCategoryBuUserName/" + userName,
         contentType: 'application/json',
         success: function (data, textStatus, jqXHR) {
+            console.log(data);
+            
             $('#firstWiFi').hide();
             $('#firstIBS').hide();
             $('#firstTrns').hide();
@@ -215,6 +217,7 @@ function loadEngineerFunction() {
             $('.tree ul li:nth-child(9) li').hide();
             $('.tree ul li:nth-child(10) li').hide();
             $('.tree ul li:nth-child(11) li').hide();
+            
         },
         error: function (jqXHR, textStatus, errorThrown) {
         }

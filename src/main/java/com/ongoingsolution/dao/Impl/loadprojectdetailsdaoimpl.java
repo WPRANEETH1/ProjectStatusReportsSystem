@@ -29,6 +29,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class loadprojectdetailsdaoimpl implements loadprojectdetailsdao {
 
+    //aaa
     @Override
     public JSONArray getProjectNameWithCategoryBuUserName(String userName, String projectSubCategory) {
         try {
@@ -68,6 +69,7 @@ public class loadprojectdetailsdaoimpl implements loadprojectdetailsdao {
         }
     }
 
+    //bbb
     @Override
     public JSONArray getProjectNameWithCategoryBuUserNameotherProject(String userName, String projectCategory) {
         try {
@@ -85,6 +87,10 @@ public class loadprojectdetailsdaoimpl implements loadprojectdetailsdao {
             findQuery.put("createdprojectName", 1);
             findQuery.put("createdprojectCategory", 1);
             findQuery.put("createdprojectSubCategory", 1);
+
+            findQuery.put("createdprojectTotalscope", 1);
+            findQuery.put("createdprojectStartDate", 1);
+            findQuery.put("createdprojectEndDate", 1);
 
             sortQuery.put("createdprojectDateTime", -1);
 
@@ -134,6 +140,7 @@ public class loadprojectdetailsdaoimpl implements loadprojectdetailsdao {
     }
 //--------------------------------------------------------------------------------------------
 
+    //dd
     @Override
     public JSONArray getProjectNameWithCategoryBuManager(String projectSubCategory) {
         try {
@@ -172,6 +179,7 @@ public class loadprojectdetailsdaoimpl implements loadprojectdetailsdao {
         }
     }
 
+    //cc
     @Override
     public JSONArray getProjectNameWithCategoryBuManagerotherProject(String projectCategory) {
         try {
@@ -188,6 +196,10 @@ public class loadprojectdetailsdaoimpl implements loadprojectdetailsdao {
             findQuery.put("createdprojectName", 1);
             findQuery.put("createdprojectCategory", 1);
             findQuery.put("createdprojectSubCategory", 1);
+
+            findQuery.put("createdprojectTotalscope", 1);
+            findQuery.put("createdprojectStartDate", 1);
+            findQuery.put("createdprojectEndDate", 1);
 
             sortQuery.put("createdprojectDateTime", -1);
 
