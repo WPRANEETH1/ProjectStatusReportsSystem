@@ -48,7 +48,8 @@ function accn() {
     var projectTotalscope = $('#accntotalscope').val();
     var projectStartDate = $('#accnstartdate').val();
     var projectEndDate = $('#accnenddate').val();
-    var projectSubCategory = $('#accnSub_ProjectName').val();
+//    var projectSubCategory = $('#accnSub_ProjectName').val();
+    var projectSubCategory = "Access Network";
     var projectUserName = $('#sessionusername').val();
     var projectDateTime = new Date().toISOString().substr(0, 10);
     var NestedHeader = [[], [], []];
@@ -201,7 +202,7 @@ function accn() {
                         "RFI MW & Power Pending(WIP)", "Other Operator Approval Pending(WIP)", "Material Pending(WIP)", "RF Cabinet(WIP)", "DT(WIP)",
                         "Eq.not Ready", "Site not Ready", "SA Issues", "RFI MW Pending(CF)", "RFI Power Pending(CF)", "RFI MW & Power Pending(CF)",
                         "Other Operator Approval Pending(CF)", "Material Pending(CF)", "RF Cabinet(CF)", "DT(CF)",
-                        "Commissioned & blocked(CF)", "PAT Passed & blocked(CF)", "TX Pending(WIP)", "Civil Pending(CF)", "MW PAT Pending(WIP)", "Commission Pending(WIP)", 
+                        "Commissioned & blocked(CF)", "PAT Passed & blocked(CF)", "TX Pending(WIP)", "Civil Pending(CF)", "MW PAT Pending(WIP)", "Commission Pending(WIP)",
                         "Commissioned blocked(WIP)", "Power Pending(WIP)", "Other"]});
         projectdatavalue["Status"] = "";
     }

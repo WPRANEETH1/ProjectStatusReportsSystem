@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/* global Handsontable, saveExcelFile */
+/* global Handsontable, saveExcelFile, moment */
 
 window.onload = loadexcelshetByprojectEngineer();
 
@@ -53,10 +53,35 @@ function viewexcelsheet(exceldata) {
             Handsontable.renderers.TextRenderer.apply(this, arguments);
             td.style.backgroundColor = 'green';
         };
+
+        function negativeValueRenderer(instance, td, row, col, prop, value, cellProperties) {
+            Handsontable.renderers.TextRenderer.apply(this, arguments);
+            if (prop === "OnAir_Target_Date" || prop === "OnAir_Actual_Date") {
+                if (moment(value, 'YYYY-MM-DD', true).isValid()) {
+//                    td.style.background = '#EEE';
+                } else {
+                    td.style.backgroundColor = 'red';                    
+                }
+                Handsontable.AutocompleteCell.renderer.apply(this, arguments);
+            }
+            if(prop === "Status" || prop === "Current_Status"){
+                if(value === "OnAir"){
+                    td.style.backgroundColor = '#7FFF00';
+                }
+            }
+            if(prop === "Status" || prop === "Current_Status" || prop === "Acquisition_Status" || prop === "TI_Start_Date" || prop === "TI_Completed_Date" || prop === "SWAP_Date" ||
+                    prop === "2G_Vendor" || prop === "3G_Vendor" || prop === "Region" || 
+                    prop === "G2_3G_4G" || prop === "RF_TSS_Date" || prop === "RF_TSSR_Submission_Date" || prop === "RF_TSSR_Approval_Date" || prop === "Equipments_Delivery_Date" ||
+                    prop === "TI_Pre_PAT_Date" || prop === "TI_PAT_Date"){
+                 Handsontable.AutocompleteCell.renderer.apply(this, arguments);
+            }
+            
+        }
+
         hot1 = new Handsontable(container, {
             data: data,
             startRows: 5,
-            afterChange: function () {
+            afterChange: function (arr, pop) {
                 var tmpData = JSON.stringify((data));
 //                console.log(JSON.parse(tmpData));
             },
@@ -76,7 +101,10 @@ function viewexcelsheet(exceldata) {
             dropdownMenu: true,
             filters: true,
             search: true,
-            columns: exceldata[0].createdprojectColumns
+            columns: exceldata[0].createdprojectColumns,
+            cells: function (row, col, prop) {
+                this.renderer = negativeValueRenderer;
+            }
 //            cell: [
 //                {row: 1, col: 0, renderer: greenRenderer}
 //            ],

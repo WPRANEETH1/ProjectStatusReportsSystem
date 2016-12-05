@@ -399,12 +399,14 @@
                                 <br>
                                 <div class="col-sm-12" align="center" style="padding-bottom: 2%">                                    
                                     <div class="form-group" align="center">
+                                        <div class="col-sm-2"></div>
                                         <label class="col-sm-2 control-label" style="padding-top: 2%">Project Name:</label>
                                         <div class="col-sm-4">
                                             <input class="form-control" id="accnprojectName" type="text" />
                                         </div>
-                                        <label class="col-sm-2 control-label" style="padding-top: 2%">Project Category:</label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-2"></div>
+                                        <!--<label class="col-sm-2 control-label" style="padding-top: 2%">Project Category:</label>-->
+<!--                                        <div class="col-sm-4">
                                             <select class="form-control selectpicker" id="accnSub_ProjectName">
                                                 <option></option>
                                                 <option>Buffer Stock_Huawei</option>
@@ -418,7 +420,7 @@
                                                 <option>Immediate Expansion_ZTE P1</option>
                                                 <option>Immediate Expansion_ZTE P2</option>
                                             </select>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                                 <br>
@@ -858,7 +860,7 @@
 
 
                                 <br>
-                                <div class="col-sm-12" align="center" style="padding-bottom: 2%">                                    
+                                <div class="col-sm-12" align="center" style="padding-bottom: 0%">                                    
                                     <div class="form-group" align="center">
                                         <div class="col-sm-2"></div>
                                         <label class="col-sm-2 control-label" style="padding: 2%">Project Name:</label>
@@ -887,7 +889,7 @@
                                 </div>                              
                                 <br>
                                 <hr>
-                                <fieldset class="">
+                                <fieldset class="" style="min-width: 1px;">
                                     <legend style="font-size: 12px">select fields...</legend>
                                     <div class="col-sm-3">
                                         <div class="checkbox checkbox-primary">
